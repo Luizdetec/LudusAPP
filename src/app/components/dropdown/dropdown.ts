@@ -36,6 +36,7 @@ export class Dropdown {
   }
 
   selectOption(option: string): void {
+    this.selected = option; // atualiza o valor local para aparecer no input
     this.selectedChange.emit(option);
     this.close();
   }

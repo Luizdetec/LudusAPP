@@ -1,0 +1,48 @@
+.main-box {
+  width: 100%;
+}
+
+.checkbox-wrapper {
+  color: var(--Neutral-90, #344055);
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  letter-spacing: -0.01rem;
+}
+
+/* Nova classe para aplicar a borda condicionalmente */
+.checkbox-wrapper.has-border {
+  border-radius: 0.625rem;
+  border: 1px solid var(--Neutral-40, #e2e8f0);
+  box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  padding: 0.375rem 0.75rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid #a4a9b0;
+  border-radius: 2px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type='checkbox']:checked {
+  background-color: #263293;
+  border-color: #263293;
+  background-image: var(--checked-icon-url);
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+  background-position: center;
+}
