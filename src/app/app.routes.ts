@@ -9,4 +9,8 @@ export const routes: Routes = [
         path: 'Perfil-do-aluno',
         loadComponent: () => import('./pages/student-profile/student-profile'),
     },
+    {
+        path: 'atualizar-perfil',
+        loadComponent: () => import('./pages/update-profile/update-profile'),
+    },
 ];

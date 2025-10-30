@@ -34,39 +34,41 @@
 }
 
 .line-divisor{
-    width: 100%;
-    height: 1px;
-    opacity: 0.35;
-    background-color: #111;
+   @include line-divisor;
+}
+
+.main-box{
+    @include container;
+    height: 70vh; /* tamanho fixo proporcional à tela — ajuste (ex: 50vh / 70vh) conforme necessário */
+    max-height: 80vh; /* opcional, evita que cresça demais em telas grandes */
+    overflow-y: auto; /* torna o conteúdo rolável */
+
 }
 
 .input-box{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-    flex: 1; // Add this
-    app-dropdown {
-        width: 80%; // Add this to control dropdown width
-        max-width: 400px; // Add this to limit maximum width
-    }
+    gap: 10px;
 }
 
-.main-box{
-    @include container;
-    height: 70vh;
-}
-
-.class-container{
+.inner-box{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 8px;
+    border: 1px solid var(--Brand-Black, #111);
+    padding: 24px;
 }
 
-.student-text{
-    @include font-md-regular
+.input-row{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.input-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
 .btn-box{
