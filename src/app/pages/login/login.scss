@@ -1,0 +1,121 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* esquerda colorida */
+.left-panel {
+  flex: 1;
+  background: #9aa0ff; /* ajuste para o tom desejado */
+}
+
+/* lado do formulário */
+.right-panel {
+  flex: 1;
+  background: #fbf8ef; /* fundo claro parecido com a imagem */
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  align-items: center; /* centraliza verticalmente o conteúdo */
+  justify-content: center;
+}
+
+/* link de suporte no canto superior direito */
+.help-link {
+  position: absolute;
+  top: 1.25rem;
+  right: 2rem;
+  font-size: 0.9rem;
+  color: #111;
+  text-decoration: none;
+}
+
+.login-text{
+    color: var(--Brand-Black, #111);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* caixa do formulário (centralizada e largura controlada) */
+.form-wrap {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* título */
+.form-wrap h1 {
+  font-size: 2.25rem;
+  margin: 0 0 0.5rem 0;
+  color: #111;
+  font-weight: 700;
+}
+
+/* labels dos campos */
+.form-wrap label {
+  font-size: 0.9rem;
+  color: #111;
+  margin-top: 0.25rem;
+}
+
+/* link esqueci a senha */
+.forgot {
+  margin-top: 0.5rem;
+  color: #6b63ff;
+  text-decoration: underline;
+  align-self: flex-start;
+  font-size: 0.9rem;
+}
+
+/* botão em largura cheia */
+.btn-area {
+  margin-top: 1rem;
+}
+.btn-area app-button {
+  width: 100%;
+  display: block;
+}
+
+/* texto de cadastro centralizado */
+.signup {
+    color: var(--Brand-Black, #111);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: center;
+}
+.signup a {
+  color: #6b63ff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+button{
+    padding: 15px 34px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: var(--Brand-Black, #111);
+    color: #FFFFFF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+
+    &:hover {
+        background: #333333;
+    }
+}
