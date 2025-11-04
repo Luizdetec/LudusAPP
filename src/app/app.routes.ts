@@ -13,4 +13,12 @@ export const routes: Routes = [
         path: 'atualizar-perfil',
         loadComponent: () => import('./pages/update-profile/update-profile'),
     },
+    {
+        path: 'cadastro',
+        loadComponent: () => import('./pages/register/register'),
+    },
+    {
+        path: 'home',
+        loadComponent: () => import('./pages/home/home'),
+    },
 ];
