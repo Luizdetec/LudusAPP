@@ -21,4 +21,9 @@ export const routes: Routes = [
         path: 'home',
         loadComponent: () => import('./pages/home/home'),
     },
+    {
+        path: 'frequencia',
+        loadComponent: () => import('./pages//attendance/attendance'),
+    },
+    
 ];
