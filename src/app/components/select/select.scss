@@ -1,0 +1,38 @@
+@use '../../../Styles/variables.scss' as *;
+
+.select-container {
+  width: 100%; // Ocupa o máximo de largura disponível
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; // Espaço entre o label e o select
+}
+
+label{
+  color: var(--Brand-Black, #111);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 25px;
+  font-weight: 500;
+}
+
+select {
+  width: 100%; // Ocupa toda a largura disponível
+  padding: 15px 20px;
+  border: 1px solid var(--Brand-Black, #111); // Borda
+  background: #FEFBF0; // Fundo
+  font-size: 1rem; // Tamanho da fonte
+  appearance: none; // Remove o estilo padrão do navegador
+  cursor: pointer; // Cursor de interação
+  position: relative;
+
+  /* Adiciona a seta no final */
+  background-image: url('../../../../public/assets/icons/seta.svg');
+  background-repeat: no-repeat;
+  background-position: right 1.5rem center; // Posiciona a seta
+  background-size: 1rem; // Tamanho da seta
+
+  &:focus {
+    outline: none; // Remove o contorno padrão
+    border-color: #007bff; // Cor da borda ao focar
+  }
+}

@@ -29,4 +29,8 @@ export const routes: Routes = [
         path: 'gerar-relatorio',
         loadComponent: () => import('./pages/report/report'),
     },
+    {
+        path: 'matricular-novo-aluno',
+        loadComponent: () => import('./pages//new-student/new-student'),
+    },
 ];

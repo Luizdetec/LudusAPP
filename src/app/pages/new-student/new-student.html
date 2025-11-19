@@ -1,0 +1,37 @@
+<div class="main-page">
+    <div class="left-panel">
+        <div class="header">
+            <span class="header-text">Matrícula</span>
+            <button class="cancel-btn">Cancelar</button>
+        </div>
+
+        <div class="line-divisor"></div>
+
+        <div class="main-content">
+            <span class="sub-title">Identificação do aluno</span>
+
+            <div class="student-info">
+                <app-main-input-field label="Nome do aluno" placeholder="Ex: Maria Clara da silva"></app-main-input-field>
+                <app-main-input-field label="NIS"></app-main-input-field>
+                
+                <div class="input-row">
+                    <div class="select-wrapper">
+                        <app-select label="Identidade racial" [options]="races" [(selected)]="selectedRace"></app-select>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <app-select label="Sexo *" [options]="sexes" [(selected)]="selectedSex"></app-select>
+                    </div>
+                </div>
+
+                <app-main-input-field label="UF"></app-main-input-field>
+                <app-main-input-field label="Município de Nascimento"></app-main-input-field>
+                <app-main-input-field label="Nacionalidade"></app-main-input-field>
+                <app-main-input-field label="Tipo de nascimento"></app-main-input-field>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="right-panel"></div>
+</div>
