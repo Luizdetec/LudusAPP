@@ -1,0 +1,77 @@
+@use '../../../styles/variables.scss' as *;
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* esquerda colorida */
+.right-panel {
+  flex: 1;
+  background: #FE98A6;
+  background-image: url('../../../../public/assets/images/Avatar2.svg');
+  background-size: contain;         // faz a imagem cobrir toda a div
+  background-repeat: no-repeat;   // impede repetição
+  background-position: center;    // centraliza a imagem
+}
+
+/* lado do formulário */
+.left-panel {
+  flex: 2.5;
+  padding: 2rem;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+}
+
+.header-text{
+  color: #000;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 123.077% */
+}
+
+.cancel-btn{
+  padding: 10px 20px;
+  background-color: #FEFBF0;
+  border: none;
+  color: var(--Brand-Black, #111);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: var(--Brand-Off-White, #FEFBF0);
+
+  &:hover{
+    cursor: pointer;
+    background-color: #fbf8ef;
+  }
+}
+
+.line-divisor{
+  @include line-divisor;
+}
+
+.main-content{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.main-content-text{
+  color: var(--Brand-Black, #111);
+  align-self: stretch;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

@@ -1,0 +1,135 @@
+@use "../../../Styles/variables.scss" as *;
+
+:host {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.custom-multicheckbox-select {
+  position: relative;
+  min-width: 12.5rem; // 200px
+  border: 1px solid var(--Brand-Black, #111);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem; // 8px 12px
+  transition: border-color 0.2s;
+  box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.04); // 0 1px 4px
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+
+  &.active {
+    box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.04); // 0 1px 4px
+  }
+
+  &.disabled {
+    pointer-events: none;
+    background-color: $neutral-30; 
+    border: 1px solid $neutral-40; 
+    cursor: not-allowed;
+
+    .custom-multicheckbox-arrow svg {
+      fill: #64748B !important;
+    }
+  }
+}
+
+.text-select {
+  color: $neutral-100;
+  flex: 1 0 0;
+  @include font-xs-regular;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.custom-multicheckbox-arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem; // 8px
+
+  svg {
+    fill: #263293 !important;
+    width: 0.875rem; // 14px
+    height: 0.875rem; // 14px
+    vertical-align: middle;
+    filter: none !important;
+  }
+}
+
+.custom-multicheckbox-placeholder,
+.custom-multicheckbox-selected {
+  color: #222;
+  font-size: 0.875rem; // 14px
+  font-weight: 350;
+  line-height: 0.5;
+  width: 100%;
+  max-width: 90%;
+}
+
+.custom-multicheckbox-options {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  border: 1px solid var(--Brand-Black, #111);
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1); // 0 4px 16px
+  margin-top: 0.25rem; // 4px
+  z-index: 1000;
+  padding: 0.5rem 0; // 8px 0
+  max-height: 16.25rem; // 260px
+  overflow-y: auto;
+}
+
+.custom-multicheckbox-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // 8px
+  padding: 0.375rem 1rem; // 6px 16px
+  font-size: 0.875rem; // 14px
+  cursor: pointer;
+  color: $neutral-90;
+  transition: background 0.15s;
+}
+
+.custom-multicheckbox-selected label {
+  color: red;
+}
+
+.custom-multicheckbox-option:hover {
+  background: #f3f6fa;
+}
+
+.custom-multicheckbox-option input[type="checkbox"] {
+  margin-right: 0.5rem; // 8px
+  accent-color: #263293;
+  transform: scale(1.1);
+}
+
+.title-input {
+  display: flex;
+  flex-direction: row;
+  gap: 0.125rem; // 2px
+}
+
+.mark {
+  color: $brand-palette-red-mn;
+}
+
+label {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem; // 16px
+  font-style: normal;
+  font-weight: 600;
+  color: #5b6776;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px; // 16px
+  flex: 1;
+}

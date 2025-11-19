@@ -1,0 +1,12 @@
+<div class="main-box">
+  <div class="checkbox-wrapper" [class.has-border]="showBorder">
+    <div class="title">
+      <input
+        id="input"
+        type="checkbox"
+        [style.--checked-icon-url]="'url(' + checkedIconUrl + ')'"
+      />
+      <label for="input"> {{ label }} </label>
+    </div>
+  </div>
+</div>

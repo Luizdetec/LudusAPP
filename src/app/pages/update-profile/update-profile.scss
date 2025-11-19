@@ -1,0 +1,77 @@
+@use '../../../styles/variables.scss' as *;
+
+.main-page {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.return-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    border:none;
+}
+
+.close-img{
+    width: 2rem;
+    height: 2rem;
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.line-divisor{
+   @include line-divisor;
+}
+
+.main-box{
+    @include container;
+    height: 70vh; /* tamanho fixo proporcional à tela — ajuste (ex: 50vh / 70vh) conforme necessário */
+    max-height: 80vh; /* opcional, evita que cresça demais em telas grandes */
+    overflow-y: auto; /* torna o conteúdo rolável */
+
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inner-box{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--Brand-Black, #111);
+    padding: 24px;
+}
+
+.input-row{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.input-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-box{
+    @include button-box
+}

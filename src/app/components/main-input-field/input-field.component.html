@@ -1,0 +1,17 @@
+<div class="form">
+  <div class="title-input">
+    <label [class.disabled-label]="disabled">{{ label }}</label>
+    <label class="mark" *ngIf="required && !disabled">*</label>
+  </div>
+
+  <input
+    [type]="type"
+    class="input-box"
+    [ngClass]="{ 'disabled': disabled }"
+    [value]="cpfCnpj ? formattedValue : model"
+    (input)="onInput($event)"
+    [placeholder]="placeholder"
+    [attr.maxlength]="cpfCnpj ? 18 : null"
+    [disabled]="disabled"
+  />
+</div>
