@@ -23,7 +23,10 @@ export const routes: Routes = [
     },
     {
         path: 'frequencia',
-        loadComponent: () => import('./pages//attendance/attendance'),
+        loadComponent: () => import('./pages/attendance/attendance'),
     },
-    
+    {
+        path: 'gerar-relatorio',
+        loadComponent: () => import('./pages/report/report'),
+    },
 ];

@@ -1,43 +1,17 @@
-<div class="attendance-page">
-  <div class="attendance-top">
-    <div class="controls">
-      <app-dropdown [options]="['01. Berçário I','02. Maternal','03. Pré']" label="Selecione a turma"></app-dropdown>
-      <input class="date-input" type="date" />
-      <app-button text="Atualizar" class="btn-update"></app-button>
+<div class="login-page">
+
+  <div class="left-panel">
+    <div class="header">
+      <span class="header-text">Frequência</span>
+      <button class="cancel-btn">Cancelar</button>
     </div>
 
-    <div class="top-actions">
-      <app-button text="Cancelar" class="btn-cancel" color="#fff" textcolor="#111"></app-button>
-      <app-button text="Confirmar" class="btn-confirm"></app-button>
+    <div class="line-divisor"></div>
+
+    <div class="main-content">
+      <span class="main-content-text">Registre a presença diária da turma</span>
     </div>
   </div>
 
-  <h1 class="page-title">FREQUÊNCIA</h1>
-
-  <section class="attendance-grid">
-    <aside class="student-list">
-      <div class="student-list-inner">
-        <!-- exemplo de itens — troque por *ngFor no TS quando integrar -->
-        <label class="student-item"><app-checkbox></app-checkbox><span>Jão</span></label>
-        <label class="student-item"><app-checkbox></app-checkbox><span>Maria</span></label>
-        <label class="student-item"><app-checkbox></app-checkbox><span>José</span></label>
-        <label class="student-item"><app-checkbox></app-checkbox><span>Ana</span></label>
-        <label class="student-item"><app-checkbox></app-checkbox><span>Elias</span></label>
-        <label class="student-item"><app-checkbox></app-checkbox><span>Luana</span></label>
-        <!-- espaço extra para scroll -->
-      </div>
-    </aside>
-
-    <div class="notes-column">
-      <div class="note-block">
-        <h3 class="note-title">JUSTIFICATIVA DE FALTAS</h3>
-        <textarea class="note-area" placeholder="Escreva justificativas aqui...">Todos os alunos estavam presentes</textarea>
-      </div>
-
-      <div class="note-block">
-        <h3 class="note-title">OBSERVAÇÕES</h3>
-        <textarea class="note-area" placeholder="Observações gerais...">Não há observações</textarea>
-      </div>
-    </div>
-  </section>
+  <div class="right-panel"></div>
 </div>
