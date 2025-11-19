@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgClass, NgFor, NgIf, CommonModule  } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-attendance',
@@ -10,6 +11,7 @@ import { NgClass, NgFor, NgIf, CommonModule  } from '@angular/common';
   standalone: true
 })
 export default class Attendance {
+  constructor(private router: Router) {}
 
   turmaSelecionada = '';
   dataSelecionada = '';
@@ -33,4 +35,7 @@ export default class Attendance {
     { nome: 'google', status: 'Presente', checked: true },
   ];
 
+  returnHome() {
+    this.router.navigate(['/home']);
+  }
 }

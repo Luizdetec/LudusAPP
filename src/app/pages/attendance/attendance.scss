@@ -98,6 +98,7 @@
 
   // Estilo base compartilhado para o Select e o Input
   select, input {
+    box-sizing: border-box;
     width: 100%;
     padding: 1rem; // Altura interna
     font-size: 1.1rem;
@@ -138,7 +139,6 @@
 
   input[type="date"] {
     appearance: none;
-    position: relative;
     
     // Ícone de calendário customizado
     &::-webkit-calendar-picker-indicator {

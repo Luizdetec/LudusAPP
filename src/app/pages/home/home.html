@@ -23,7 +23,7 @@
     <h2 class="section-title">Gestão escolar</h2>
 
     <div class="cards">
-      <a class="card card-pink" href="/frequencia">
+      <a class="card card-pink" (click)="navigateToAttendance()">
         <span class="card-icon"><img src="assets/icons/Evaluation.svg" alt=""></span>
         <div class="card-text">
           <h3>Frequência</h3>
@@ -41,7 +41,7 @@
         <span class="card-action" aria-hidden="true"><img src="assets/icons/arrow-right.svg" alt=""></span>
       </a>
 
-      <a class="card card-purple" href="#">
+      <a class="card card-purple" (click)="navigateToReport()">
         <span class="card-icon"><img src="assets/icons/Books.svg" alt=""></span>
         <div class="card-text">
           <h3>Relatórios</h3>
