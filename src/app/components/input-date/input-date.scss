@@ -1,0 +1,32 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; // Espaço entre o label e o input
+  flex: 1; // Faz os dois ocuparem o mesmo tamanho (50% cada)
+
+  label {
+    font-size: 1.2rem; // Tamanho do texto "Turma" e "Data"
+    font-weight: 500;
+    color: var(--Brand-Black, #111);
+    font-family: "Inter", sans-serif;
+  }
+
+  // Estilo base compartilhado para o Select e o Input
+  select, input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px 20px; // Altura interna
+    font-size: 1.1rem;
+    font-family: "Inter", sans-serif;
+    color: #111;
+    background-color: var(--Brand-Off-White, #FEFBF0);
+    border: 1px solid #111;
+    border-radius: 0; // Bordas quadradas como na imagem
+    outline: none;
+    cursor: pointer;
+
+    &:focus {
+      border-width: 2px; // Destaque sutil ao clicar
+    }
+  }
+}

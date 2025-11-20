@@ -24,11 +24,44 @@
                     </div>
                 </div>
 
-                <app-main-input-field label="UF"></app-main-input-field>
-                <app-main-input-field label="Município de Nascimento"></app-main-input-field>
-                <app-main-input-field label="Nacionalidade"></app-main-input-field>
-                <app-main-input-field label="Tipo de nascimento"></app-main-input-field>
+                <app-main-input-field label="UF *"></app-main-input-field>
+                <app-main-input-field label="Município de Nascimento *"></app-main-input-field>
+                <app-select label="Tipo da certidão civil"></app-select>
+                
+                <div class="inner-box">
+                    <span>Certidão Modelo Antigo</span>
+                    <div class="line-divisor"></div>
+                    <div class="input-row">
+                        <app-main-input-field label="Número Termo"></app-main-input-field>
+                        <app-main-input-field label="Livro"></app-main-input-field>
+                        <app-main-input-field label="Folha"></app-main-input-field>
+                        <app-input-date label="Data de Emissão"></app-input-date>
+                    </div>
+                </div>
 
+                <app-main-input-field label="Número de Matrícula (Registro Civil)"></app-main-input-field>
+
+                <div class="inner-box">
+                    <span>Informações Documentadas</span>
+                    <div class="line-divisor"></div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="UF - Cartório"></app-main-input-field>
+                        <app-main-input-field label="Orgão Emissor"></app-main-input-field>
+                        <app-main-input-field label="Município do Cartório"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="Nome do Cartório"></app-main-input-field>
+                        <app-main-input-field label="Identidade, Documento Estrangeiro ou Passaporte"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="Cadastro de Pessoa Física (CPF) *"></app-main-input-field>
+                        <app-main-input-field label="Cartão SUS"></app-main-input-field>
+                        <app-input-date label="Data de Expedição"></app-input-date>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

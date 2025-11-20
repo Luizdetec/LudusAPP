@@ -57,13 +57,13 @@
 
 .line-divisor{
     @include line-divisor;
-    margin-bottom: 2rem;
 }
 
 .main-content{
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-top: 1rem;
 }
 
 .sub-title{
@@ -79,7 +79,7 @@
   flex-direction: column;
   gap: 2rem;
   overflow-y: auto; 
-  max-height: 700px;
+  max-height: 60vh;
   padding-right: 1rem; // Adiciona espaço entre o conteúdo e a barra lateral
 
   /* Estilização da barra de rolagem */
@@ -108,4 +108,12 @@
 
 .select-wrapper{
   width: 50%;
+}
+
+.inner-box{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--Brand-Black, #111);
+  padding: 1rem;
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { InputFieldComponent } from "../../components/main-input-field/input-field.component";
 import { Select } from "../../components/select/select";
+import { InputDate } from "../../components/input-date/input-date";
 
 @Component({
   selector: 'app-new-student',
-  imports: [InputFieldComponent, Select],
+  imports: [InputFieldComponent, Select, InputDate],
   templateUrl: './new-student.html',
   styleUrl: './new-student.scss',
 })
