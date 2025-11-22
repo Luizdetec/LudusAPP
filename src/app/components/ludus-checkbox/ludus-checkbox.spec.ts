@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import  Login  from './login';
+import { LudusCheckbox } from './ludus-checkbox';
 
-describe('Login', () => {
-  let component: Login;
-  let fixture: ComponentFixture<Login>;
+describe('LudusCheckbox', () => {
+  let component: LudusCheckbox;
+  let fixture: ComponentFixture<LudusCheckbox>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Login]
+      imports: [LudusCheckbox]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Login);
+    fixture = TestBed.createComponent(LudusCheckbox);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

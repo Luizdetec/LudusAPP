@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownService } from './dropdown.service';
+import { NgFor } from '@angular/common';
 
 
 @Component({
   selector: 'app-dropdown',
-  imports: [CommonModule],
+  imports: [CommonModule, NgFor],
   templateUrl: './dropdown.html',
   styleUrl: './dropdown.scss',
 })

@@ -9,8 +9,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-family: 'Inter', sans-serif;
+  gap: 20px;
   color: #5b6776;
   flex: 1;
 }
@@ -27,7 +26,7 @@
   color: $neutral-90 !important;
 
   &:focus {
-    border-color: $brand-palette-blue-mn;
+    border-width: 2px;
   }
 
   &.disabled {
@@ -45,7 +44,6 @@
 
 .error-message {
   color: #d1493d;
-  font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.125rem;
@@ -62,7 +60,11 @@
 }
 
 label {
-  @include label-text;
+  color: var(--Brand-Black, #111);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 25px;
+  font-weight: 500;
 }
 
 input[type='checkbox' i] {
