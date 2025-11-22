@@ -7,11 +7,11 @@
         <span class="login-text">Login</span>
 
         <div class="input-container">
-                <app-main-input-field label="Email" placeholder="Digite seu email"></app-main-input-field>
-                <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password"></app-main-input-field>
+                <app-main-input-field label="Nome de Usuário" placeholder="Digite seu nome de usuário"  [(ngModel)]="username"></app-main-input-field>
+                <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password" [(ngModel)]="password"></app-main-input-field>
         </div>
 
-        <button>Entrar</button>
+        <button (click)="login()">Entrar</button>
 
         <span class="signup">Ainda não faz parte? <a href="#">Cadastre-se agora</a></span>
     </div>

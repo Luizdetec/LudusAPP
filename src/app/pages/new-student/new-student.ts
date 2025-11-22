@@ -3,6 +3,7 @@ import { InputFieldComponent } from "../../components/main-input-field/input-fie
 import { Select } from "../../components/select/select";
 import { InputDate } from "../../components/input-date/input-date";
 import { LudusCheckbox } from "../../components/ludus-checkbox/ludus-checkbox";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-student',
@@ -11,6 +12,8 @@ import { LudusCheckbox } from "../../components/ludus-checkbox/ludus-checkbox";
   styleUrl: './new-student.scss',
 })
 export default class NewStudent {
+  constructor(private readonly router: Router) {}
+
   selectedRace: string = '';
   selectedSex: string = '';
 
@@ -29,4 +32,8 @@ export default class NewStudent {
   vaccine: string[] = ['Completa', 'Incompleta', 'Não entregue']
 
   zone: string[] = ['Urbana', 'Rural', 'N/A'];
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
+  }
 }

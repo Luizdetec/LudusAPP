@@ -18,4 +18,12 @@ export default class Home {
   navigateToReport() {
     this.router.navigate(['/gerar-relatorio']);
   }
+
+  navigateToNewStudent() {
+    this.router.navigate(['/matricular-novo-aluno']);
+  }
+
+  navigateToStudentProfile() {
+    this.router.navigate(['/Perfil-do-aluno']);
+  }
 }
