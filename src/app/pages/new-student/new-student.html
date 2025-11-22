@@ -11,12 +11,14 @@
             <span class="sub-title">Identificação do aluno</span>
 
             <div class="student-info">
-                <app-main-input-field label="Nome do aluno" placeholder="Ex: Maria Clara da silva"></app-main-input-field>
+                <app-main-input-field label="Nome do aluno"
+                    placeholder="Ex: Maria Clara da silva"></app-main-input-field>
                 <app-main-input-field label="NIS"></app-main-input-field>
-                
+
                 <div class="input-row">
                     <div class="select-wrapper">
-                        <app-select label="Identidade racial" [options]="races" [(selected)]="selectedRace"></app-select>
+                        <app-select label="Identidade racial" [options]="races"
+                            [(selected)]="selectedRace"></app-select>
                     </div>
 
                     <div class="select-wrapper">
@@ -26,8 +28,8 @@
 
                 <app-main-input-field label="UF *"></app-main-input-field>
                 <app-main-input-field label="Município de Nascimento *"></app-main-input-field>
-                <app-select label="Tipo da certidão civil"></app-select>
-                
+                <app-select label="Tipo da certidão civil" [options]="certificateType"></app-select>
+
                 <div class="inner-box">
                     <span>Certidão Modelo Antigo</span>
                     <div class="line-divisor"></div>
@@ -53,7 +55,8 @@
 
                     <div class="input-row">
                         <app-main-input-field label="Nome do Cartório"></app-main-input-field>
-                        <app-main-input-field label="Identidade, Documento Estrangeiro ou Passaporte"></app-main-input-field>
+                        <app-main-input-field
+                            label="Identidade, Documento Estrangeiro ou Passaporte"></app-main-input-field>
                     </div>
 
                     <div class="input-row">
@@ -62,8 +65,118 @@
                         <app-input-date label="Data de Expedição"></app-input-date>
                     </div>
                 </div>
+
+                <div class="inner-box">
+                    <span>Informações de Matrícula</span>
+                    <div class="line-divisor"></div>
+                    <app-main-input-field label="Nome da Escola"></app-main-input-field>
+
+                    <div class="input-row">
+                        <app-input-date label="Data de Ingresso"></app-input-date>
+                        <app-input-date label="Data de Matrícula"></app-input-date>
+                        <app-main-input-field label="Matrícula *"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="Código Senso Inep"></app-main-input-field>
+                        <app-main-input-field label="Código Turma"></app-main-input-field>
+                        <app-main-input-field label="Ano Letivo *"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="select-wrapper">
+                            <app-select label="Turno" [options]="shift"></app-select>
+                        </div>
+                        <div class="select-wrapper">
+                            <app-select label="Série" [options]="class"></app-select>
+                        </div>
+                        <div class="select-wrapper">
+                            <app-select label="Código de Procedência" [options]="Origin"></app-select>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <app-ludus-checkbox text="Programa Bolsa Família"></app-ludus-checkbox>
+                        <app-ludus-checkbox text="Transporte Escolar"></app-ludus-checkbox>
+                        <app-ludus-checkbox text="Documento pendente?"></app-ludus-checkbox>
+                    </div>
+
+                    <app-main-input-field label="Transferência"></app-main-input-field>
+                </div>
+
+                <div class="inner-box">
+                    <span>Dados dos pais/responsáveis</span>
+                    <div class="line-divisor"></div>
+                    <div class="input-row">
+                        <app-main-input-field label="Nome da Mãe"></app-main-input-field>
+                        <app-main-input-field label="Nome do Pai"></app-main-input-field>
+                        <app-main-input-field label="Nome do Responsável"></app-main-input-field>
+                    </div>
+
+                    <div class="minor-box">
+                        <app-main-input-field label="CPF do Responsável" type="number"></app-main-input-field>
+                        <app-main-input-field label="RG do Responsável" type="number"></app-main-input-field>
+                    </div>
+
+
+                </div>
+
+                <div class="grid-container">
+                    <div class="select-wrapper">
+                        <div class="checkbox-boxes">
+                            <span>Transtorno Global de Desenvolvimento</span>
+                            <div class="line-divisor"></div>
+                            <app-ludus-checkbox text="Autismo"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Síndrome de Rett"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Sindrome de Asperger"></app-ludus-checkbox>
+                            <app-ludus-checkbox
+                                text="Transtorno desintegrativo da infância Altas habilidades / Superdotação"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Altas habilidades / Superdotação"></app-ludus-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <div class="checkbox-boxes">
+                            <span>Deficiências</span>
+                            <div class="line-divisor"></div>
+                            <app-ludus-checkbox text="Baixa Visão"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Cegueira"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Auditiva"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Intelectual"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Física"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Múltipla"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Síndrome de Down"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Surdez"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Surdocegueira"></app-ludus-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <app-select label="Vacina" [options]="vaccine"></app-select>
+
+                <div class="inner-box">
+                    <span>Endereço</span>
+                    <div class="line-divisor"></div>
+                    <app-main-input-field label="Endereço"></app-main-input-field>
+                    <div class="input-row">
+                        <app-main-input-field label="Número"></app-main-input-field>
+                        <app-main-input-field label="Complemento"></app-main-input-field>
+                        <app-main-input-field label="CEP"></app-main-input-field>
+                    </div>
+                    <div class="input-row">
+                        <app-main-input-field label="Município"></app-main-input-field>
+                        <app-main-input-field label="Bairro"></app-main-input-field>
+                        <app-main-input-field label="UF"></app-main-input-field>
+                    </div>
+                    <div class="input-row">
+                        <app-main-input-field label="Telefone"></app-main-input-field>
+                        <app-main-input-field label="e-mail"></app-main-input-field>
+                    </div>
+                    <app-select label="Zona" [options]="zone"></app-select>
+                </div>
+                <app-main-input-field label="Ressalvas"></app-main-input-field>
             </div>
         </div>
+        <button class="save-btn">Salvar</button>
     </div>
 
     <div class="right-panel"></div>

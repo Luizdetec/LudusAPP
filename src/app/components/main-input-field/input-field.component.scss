@@ -26,7 +26,7 @@
   color: $neutral-90 !important;
 
   &:focus {
-    border-color: $brand-palette-blue-mn;
+    border-width: 2px;
   }
 
   &.disabled {

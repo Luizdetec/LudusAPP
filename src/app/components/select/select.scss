@@ -33,6 +33,6 @@ select {
 
   &:focus {
     outline: none; // Remove o contorno padrão
-    border-color: #007bff; // Cor da borda ao focar
+    border-width: 2px;
   }
 }
