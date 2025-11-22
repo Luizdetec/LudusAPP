@@ -19,7 +19,6 @@ export default class Login {
   login() {
     this.loginService.login(this.username, this.password).subscribe(
       (response) => {
-        console.log('Login bem-sucedido:', response);
         alert('Login bem-sucedido!');
         this.navigateToHome();
 
@@ -32,5 +31,9 @@ export default class Login {
 
   navigateToHome() {
     this.router.navigate(['/home']);
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/cadastro']);
   }
 }

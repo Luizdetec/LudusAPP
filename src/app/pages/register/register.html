@@ -7,12 +7,12 @@
         <span class="login-text">Cadastro de professor</span>
 
         <div class="input-container">
-                <app-main-input-field label="Nome de usuário" placeholder="Digite o nome de usuario"></app-main-input-field>
-                <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password"></app-main-input-field>
-                <app-main-input-field label="Confirmar senha" placeholder="Digite sua senha novamente" type="password"></app-main-input-field>
+                <app-main-input-field label="Nome de usuário" placeholder="Digite o nome de usuario" [(ngModel)]="login"></app-main-input-field>
+                <app-main-input-field label="Nome" placeholder="Digite seu nome e sobrenome" [(ngModel)]="teacherName"></app-main-input-field>
+                <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password" [(ngModel)]="password"></app-main-input-field>
         </div>
 
-        <button>Entrar</button>
+        <button (click)="register()">Entrar</button>
 
         <span class="signup">Já possui uma conta? <a href="#">Faça login</a></span>
     </div>
