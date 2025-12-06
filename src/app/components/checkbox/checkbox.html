@@ -5,6 +5,7 @@
         id="input"
         type="checkbox"
         [style.--checked-icon-url]="'url(' + checkedIconUrl + ')'"
+        (change)="onCheckboxChange($event)" 
       />
       <label for="input"> {{ label }} </label>
     </div>

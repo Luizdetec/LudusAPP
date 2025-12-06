@@ -1,6 +1,14 @@
 <div class="input-group">
-    <label for="data">{{label}}</label>
-    <div class="date-wrapper">
-        <input type="date" id="data" name="data" placeholder="00/00/0000">
-    </div>
+  <label for="data">{{ label }}</label>
+  <div class="date-wrapper">
+    <input
+      type="date"
+      id="data"
+      name="data"
+      [value]="value"
+      (input)="onInput($event)"
+      [disabled]="disabled"
+      placeholder="00/00/0000"
+    />
+  </div>
 </div>
