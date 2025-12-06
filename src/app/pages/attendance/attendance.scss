@@ -81,8 +81,11 @@
   flex-direction: row;
   gap: 2rem;
   width: 100%; // Garante que ocupe a largura
+  align-items: flex-end;
 }
-
+.input-wrapper{
+  width: 50%;
+}
 .input-group {
   display: flex;
   flex-direction: column;
@@ -100,7 +103,7 @@
   select, input {
     box-sizing: border-box;
     width: 100%;
-    padding: 1rem; // Altura interna
+    padding: 15px 20px; // Altura interna
     font-size: 1.1rem;
     font-family: "Inter", sans-serif;
     color: #111;

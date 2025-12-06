@@ -12,26 +12,13 @@
       <span class="main-content-text">Registre a presença diária da turma</span>
 
       <div class="input-row">
-  
-        <div class="input-group">
-          <label for="turma">Turma</label>
-          <div class="select-wrapper">
-            <select id="turma" name="turma">
-              <option value="" disabled selected>01 — Berçário I</option>
-              <option value="bercario1">01 — Berçário I</option>
-              <option value="bercario2">02 — Berçário II</option>
-              <option value="maternal">03 — Maternal</option>
-            </select>
-          </div>
+        <div class="input-wrapper">
+          <app-select [options]="turmas" [(selected)]="turmaSelecionada" label="Turma"></app-select>
         </div>
 
-        <div class="input-group">
-          <label for="data">Data</label>
-          <div class="date-wrapper">
-            <input type="date" id="data" name="data" placeholder="00/00/0000">
-          </div>
+        <div class="input-wrapper">
+          <app-input-date label="Data"></app-input-date>
         </div>
-
       </div>
 
       <span class="alunos-title">Lista de alunos</span>

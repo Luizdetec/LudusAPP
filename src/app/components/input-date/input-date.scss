@@ -1,7 +1,7 @@
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 20px; // Espaço entre o label e o input
+  gap: 0.5rem; // Espaço entre o label e o input
   flex: 1; // Faz os dois ocuparem o mesmo tamanho (50% cada)
 
   label {

@@ -117,6 +117,7 @@ export default class NewStudent {
       (response) => {
         console.log('Cadastro de aluno realizado com sucesso:', response);
         alert('Aluno cadastrado com sucesso!');
+        this.navigateToHome();
       },
       (error) => {
         console.error('Erro ao cadastrar aluno:', error);
