@@ -4,6 +4,8 @@ import { NgClass, NgFor, NgIf, CommonModule  } from '@angular/common';
 import { Router } from '@angular/router';
 import { Select } from "../../components/select/select";
 import { InputDate } from "../../components/input-date/input-date";
+import { AttendanceService } from '../../services/attendance/attendance.service';
+import { Istudents, IAttendanceRequest } from '../../models/attendance-model';
 
 @Component({
   selector: 'app-attendance',
@@ -13,31 +15,91 @@ import { InputDate } from "../../components/input-date/input-date";
   standalone: true
 })
 export default class Attendance {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private attendanceService: AttendanceService) {}
+
+  students: Istudents[] = [];
+  studentsAttendance: IAttendanceRequest[] = [];
 
   turmaSelecionada = '';
   dataSelecionada = '';
   turmas = ['Jardim I', 'Jardim II', '1° Ano', '2° Ano', '3° Ano', '4° Ano', '5° Ano'];
-  alunos = [
-    { nome: 'Maria Clara da Silva', status: 'Presente', checked: true },
-    { nome: 'João Pereira', status: 'Presente', checked: true },
-    { nome: 'Pedro Alves', status: 'Presente', checked: true },
-    { nome: 'Matheus Leão', status: 'Presente', checked: true },
-    { nome: 'Leonardo Bernardes', status: 'Presente', checked: true },
-    { nome: 'Luiz Eduardo', status: 'Falta', justificada: true, observacao: 'Atestado médico', checked: true },
-    { nome: 'Renan Moreira', status: 'Presente', checked: true },
-    { nome: 'Thiago Amoras', status: 'Presente', checked: true },
-    { nome: 'Maria Clara da Silva', status: 'Presente', checked: true },
-    { nome: 'João Pereira', status: 'Presente', checked: true },
-    { nome: 'Pedro Alves', status: 'Presente', checked: true },
-    { nome: 'apple', status: 'Presente', checked: true },
-    { nome: 'microsoft', status: 'Presente', checked: true },
-    { nome: 'airbnb', status: 'Falta', justificada: true, observacao: 'Atestado médico', checked: true },
-    { nome: 'intercom', status: 'Presente', checked: true },
-    { nome: 'google', status: 'Presente', checked: true },
-  ];
+
+  // Mapeamento das opções do select para os valores associados
+  turmaMap: { [key: string]: string } = {
+    'Jardim I': 'J1',
+    'Jardim II': 'J2',
+    '1° Ano': '1A',
+    '2° Ano': '2A',
+    '3° Ano': '3A',
+    '4° Ano': '4A',
+    '5° Ano': '5A',
+  };
 
   returnHome() {
     this.router.navigate(['/home']);
+  }
+
+  // Método para obter o valor associado à turma selecionada
+  getTurmaValue(): string {
+    return this.turmaMap[this.turmaSelecionada] || '';
+  }
+
+  loadStudents(turmaId: string): void {
+    this.attendanceService.getStudentsByClass(turmaId).subscribe(
+      (response) => {
+        this.students = response.alunos.map((aluno) => ({
+          ...aluno,
+          checked: true, // Adiciona a propriedade `checked` para controle da presença
+        }));
+        console.log('Alunos carregados:', this.students);
+      },
+      (error) => {
+        console.error('Erro ao carregar alunos:', error);
+      }
+    );
+  }
+
+  onTurmaChange(turma: string): void {
+    this.turmaSelecionada = turma; // Atualiza a turma selecionada
+    const turmaId = this.getTurmaValue(); // Obtém o valor associado à turma
+    console.log('Turma selecionada:', this.turmaSelecionada, 'Valor associado:', turmaId);
+    this.loadStudents(turmaId); // Faz a chamada da API
+  }
+
+  onStatusChange(aluno: any): void {
+    aluno.status = aluno.checked ? 'Presente' : 'Falta';
+    console.log(`Status do aluno ${aluno.nome_aluno}: ${aluno.status}`);
+  }
+
+  submitAttendance(): void {
+    if (!this.dataSelecionada) {
+      alert('Por favor, selecione uma data antes de enviar a frequência.');
+      return;
+    }
+
+    const attendanceData: IAttendanceRequest = {
+      data: this.dataSelecionada, // Data selecionada
+      alunos: this.students.map((aluno) => ({
+        id_aluno: aluno.id_aluno,
+        nome_aluno: aluno.nome_aluno,
+        matricula: aluno.matricula,
+        presenca: aluno.checked ? 'P' : 'F', // Explicitamente 'P' ou 'F'
+        justificativa: null, // Pode ser preenchido futuramente
+        observacoes: null, // Pode ser preenchido futuramente
+      })),
+    };
+
+    console.log('Dados de frequência preparados para envio:', attendanceData);
+
+    this.attendanceService.submitAttendance(attendanceData).subscribe(
+      (response) => {
+        console.log('Frequência enviada com sucesso:', response);
+        alert('Frequência registrada com sucesso!');
+      },
+      (error) => {
+        console.error('Erro ao enviar frequência:', error);
+        alert('Erro ao registrar frequência. Tente novamente.');
+      }
+    );
   }
 }

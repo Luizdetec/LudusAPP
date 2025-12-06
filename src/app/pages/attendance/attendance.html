@@ -13,11 +13,16 @@
 
       <div class="input-row">
         <div class="input-wrapper">
-          <app-select [options]="turmas" [(selected)]="turmaSelecionada" label="Turma"></app-select>
+          <app-select 
+            [options]="turmas" 
+            [(selected)]="turmaSelecionada" 
+            label="Turma" 
+            (selectedChange)="onTurmaChange($event)">
+          </app-select>
         </div>
 
         <div class="input-wrapper">
-          <app-input-date label="Data"></app-input-date>
+          <app-input-date label="Data" [(ngModel)]="dataSelecionada"></app-input-date>
         </div>
       </div>
 
@@ -29,25 +34,23 @@
             <tr>
               <th><input type="checkbox" /></th>
               <th>Nome do Aluno</th>
-              <th>Status <span class="arrow">↓</span></th>
-              <th>Observação</th>
+              <th>Matrícula</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let aluno of alunos">
-              <td><input type="checkbox" [(ngModel)]="aluno.checked" /></td>
-              <td class="aluno-nome">{{ aluno.nome }}</td>
+            <tr *ngFor="let aluno of students">
               <td>
-                <span class="status" [ngClass]="aluno.status">{{ aluno.status }}</span>
-                <span *ngIf="aluno.justificada" class="justificada">Justificada</span>
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="aluno.checked" 
+                  (change)="onStatusChange(aluno)" 
+                />
               </td>
+              <td class="aluno-nome">{{ aluno.nome_aluno }}</td>
+              <td>{{ aluno.matricula }}</td>
               <td>
-                <span *ngIf="aluno.observacao; else addJust">
-                  {{ aluno.observacao }}
-                </span>
-                <ng-template #addJust>
-                  <span class="add-justificativa">+ Adicionar justificativa</span>
-                </ng-template>
+                <span class="status" ></span>
               </td>
             </tr>
           </tbody>
@@ -58,7 +61,7 @@
         <span>+ Adicionar justificativa geral</span>
       </div>
 
-      <button class="salvar-btn">Salvar</button>
+      <button class="salvar-btn" (click)="submitAttendance()">Salvar</button>
     </div>
   </div>
 
