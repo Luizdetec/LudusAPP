@@ -95,6 +95,7 @@ export default class Attendance {
       (response) => {
         console.log('Frequência enviada com sucesso:', response);
         alert('Frequência registrada com sucesso!');
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Erro ao enviar frequência:', error);

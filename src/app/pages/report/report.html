@@ -1,15 +1,15 @@
 <div class="report-page">
   <header class="report-top">
     <div class="report-controls">
-      <app-dropdown [options]="classes" label="Selecione a turma"></app-dropdown>
-      <input class="date-input" type="date" />
-      <app-button text="Atualizar" class="btn-update"></app-button>
+      <app-select label="Selecione a Turma" [options]="turmas" [selected]="turmaSelecionada" (selectedChange)="onTurmaChange($event)"></app-select>
+      <app-select label="Selecione o ano" [options]="ano" [selected]="anoSelecionado" (selectedChange)="onAnoChange($event)"></app-select>
+      <app-button text="Atualizar" color="#111" textcolor="#FEFBF0" hoverColor="#444" (click)="generateReport()"></app-button>
     </div>
 
     <div class="report-actions">
-      <app-button text="Cancelar" class="btn-cancel" color="#fff" textcolor="#111"></app-button>
-      <app-button text="Confirmar" class="btn-confirm"></app-button>
-      <app-button text="Exportar" class="btn-export" (click)="exportReport()"></app-button>
+      <app-button text="Cancelar" class="btn-cancel" color="#fff" textcolor="#111" hoverColor="#f1f1f1"></app-button>
+      <app-button text="Confirmar" color="#111" textcolor="#FEFBF0" hoverColor="#444"></app-button>
+      <app-button text="Exportar" color="#111" textcolor="#FEFBF0" hoverColor="#444" (click)="exportReport()"></app-button>
     </div>
   </header>
 
@@ -21,18 +21,28 @@
         <tr>
           <th class="index-col"></th>
           <th>Nome Aluno</th>
-          <th>Matrícula</th>
+          <th>Turma</th>
           <th>Jan</th><th>Fev</th><th>Mar</th><th>Abr</th><th>Mai</th><th>Jun</th>
-          <th>Jul</th><th>Ago</th><th>Set</th><th>Out</th><th>Nov</th><th>Dez</th><th>St</th>
+          <th>Jul</th><th>Ago</th><th>Set</th><th>Out</th><th>Nov</th><th>Dez</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let r of rows; let i = index">
-          <td class="index-col">{{ i + 1 }}</td>
-          <td class="student-name">{{ r.name }}</td>
-          <td class="matricula">{{ r.matricula }}</td>
-          <td *ngFor="let m of r.months">{{ m }}</td>
-          <td class="stat">0</td>
+        <tr *ngFor="let aluno of report">
+          <td></td>
+          <td>{{ aluno.nome_aluno }}</td>
+          <td>{{ turmaSelecionada }}</td>
+          <td>{{ aluno.meses['Jan'] }}</td>
+          <td>{{ aluno.meses['Fev'] }}</td>
+          <td>{{ aluno.meses['Mar'] }}</td>
+          <td>{{ aluno.meses['Abr'] }}</td>
+          <td>{{ aluno.meses['Mai'] }}</td>
+          <td>{{ aluno.meses['Jun'] }}</td>
+          <td>{{ aluno.meses['Jul'] }}</td>
+          <td>{{ aluno.meses['Ago'] }}</td>
+          <td>{{ aluno.meses['Set'] }}</td>
+          <td>{{ aluno.meses['Out'] }}</td>
+          <td>{{ aluno.meses['Nov'] }}</td>
+          <td>{{ aluno.meses['Dez'] }}</td>
         </tr>
       </tbody>
     </table>
