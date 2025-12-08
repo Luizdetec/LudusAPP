@@ -5,6 +5,7 @@ import { Select } from "../../components/select/select";
 import { ReportService } from '../../services/report/report.service';
 import { IstudentAttendance } from '../../models/report-model';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-report',
@@ -20,7 +21,7 @@ export default class Report {
   anoSelecionado = ''
   report: IstudentAttendance[] = [];
 
-  constructor(private reportService: ReportService) {}
+  constructor(private reportService: ReportService, private router: Router) {}
 
   turmaMap: { [key: string]: string } = {
     'Jardim I': 'J1',
@@ -47,14 +48,55 @@ export default class Report {
   showModal = false;
 
   exportReport(): void {
-    // aqui você dispararia o processo real de export (API, CSV etc.)
+    if (!this.report || this.report.length === 0) {
+      alert('Não há dados para exportar.');
+      return;
+    }
+
+    const headers = ['Nome do Aluno', 'Turma', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    const rows = this.report.map((aluno) => [
+      aluno.nome_aluno,
+      this.turmaSelecionada,
+      aluno.meses['Jan'],
+      aluno.meses['Fev'],
+      aluno.meses['Mar'],
+      aluno.meses['Abr'],
+      aluno.meses['Mai'],
+      aluno.meses['Jun'],
+      aluno.meses['Jul'],
+      aluno.meses['Ago'],
+      aluno.meses['Set'],
+      aluno.meses['Out'],
+      aluno.meses['Nov'],
+      aluno.meses['Dez'],
+    ]);
+
+    const csvContent = [
+      headers.join(','), // Adiciona os cabeçalhos
+      ...rows.map((row) => row.join(',')), // Adiciona as linhas de dados
+    ].join('\n'); // Junta tudo com quebra de linha
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `frequencia_alunos_${this.turmaSelecionada}_${this.anoSelecionado}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    console.log('Relatório exportado com sucesso!');
     this.showModal = true;
-    // fecha automaticamente após 2s
-    setTimeout(() => { this.showModal = false; }, 2000);
   }
 
   closeModal(): void {
     this.showModal = false;
+    this.router.navigate(['/home']);
+  }
+
+  cancel(): void {
+    this.router.navigate(['/home']);
   }
 
   generateReport(): void {
