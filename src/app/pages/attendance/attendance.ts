@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgClass, NgFor, NgIf, CommonModule  } from '@angular/common';
+import { CommonModule  } from '@angular/common';
 import { Router } from '@angular/router';
 import { Select } from "../../components/select/select";
 import { InputDate } from "../../components/input-date/input-date";
@@ -9,7 +9,7 @@ import { Istudents, IAttendanceRequest } from '../../models/attendance-model';
 
 @Component({
   selector: 'app-attendance',
-  imports: [NgClass, FormsModule, NgFor, NgIf, CommonModule, Select, InputDate],
+  imports: [ FormsModule, CommonModule, Select, InputDate],
   templateUrl: './attendance.html',
   styleUrl: './attendance.scss',
   standalone: true
