@@ -21,4 +21,11 @@ export class UpdateProfileService {
   updateStudentProfile(id_aluno: number, studentData: InewStudentModel): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/enrollments/${id_aluno}`, studentData);
   }
+
+  // Método para remover um aluno pelo ID
+  removeStudent(ids: number[]): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/students`, {
+      body: { ids },
+    });
+  }
 }

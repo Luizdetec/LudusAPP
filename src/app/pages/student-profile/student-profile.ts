@@ -91,6 +91,25 @@ export default class StudentProfile {
     );
   }
 
+  removerAluno(): void {
+  if (this.alunoSelecionadoId === null) {
+    alert('Por favor, selecione um aluno antes de remover.');
+    return;
+  }
+
+  this.updateProfileService.removeStudent([this.alunoSelecionadoId]).subscribe(
+    (response) => {
+      console.log('Aluno removido com sucesso:', response);
+      alert('Aluno removido com sucesso!');
+      this.loadStudents(); // Recarrega a lista de alunos
+    },
+    (error) => {
+      console.error('Erro ao remover aluno:', error);
+      alert('Erro ao remover aluno. Por favor, tente novamente.');
+    }
+  );
+}
+
   navigateToHome() {
     this.router.navigate(['/home']);
   }

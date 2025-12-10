@@ -30,7 +30,7 @@
 
   <div class="btn-box">
     <app-button text="Editar" (click)="editarAluno()"></app-button>
-    <app-button text="Excluir" color="#000" textcolor="#fff"></app-button>
+    <app-button text="Excluir" color="#000" textcolor="#fff" (click)="removerAluno()"></app-button>
   </div>
 
   @if (isLoading) {
