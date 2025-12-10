@@ -25,6 +25,7 @@ export default class NewStudent {
   Origin: string[] = ['01 - do lar', '02 - Escola Municipal', '03 - Escola Estadual', '04 - Escola Particular', '05 - Escola Federal', '06 - Escola Comunitária'];
   vaccine: string[] = ['Completa', 'Incompleta', 'Não entregue'];
   zone: string[] = ['Urbana', 'Rural', 'N/A'];
+  isLoading: boolean = false;
 
   studentData: InewStudentModel = {
     ident_aluno: {
@@ -113,14 +114,17 @@ export default class NewStudent {
   };
 
   registerStudent() {
+    this.isLoading = true;
     this.newStudentService.registerStudent(this.studentData).subscribe(
       (response) => {
         console.log('Cadastro de aluno realizado com sucesso:', response);
+        this.isLoading = false;
         alert('Aluno cadastrado com sucesso!');
         this.navigateToHome();
       },
       (error) => {
         console.error('Erro ao cadastrar aluno:', error);
+        this.isLoading = false;
         alert('Erro ao cadastrar aluno. Por favor, tente novamente.');
         console.log(this.studentData);
       }

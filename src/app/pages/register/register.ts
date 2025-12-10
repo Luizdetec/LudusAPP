@@ -15,10 +15,12 @@ export default class Register {
   login: string = '';
   teacherName: string = '';
   password: string = '';
+  isLoading: boolean = false;
 
   constructor(private readonly registerService: RegisterService, private readonly router: Router) {}
 
   register() {
+    this.isLoading = true;
     const data: IRegisterModel = {
       login: this.login,
       nome_professor: this.teacherName,
@@ -28,10 +30,12 @@ export default class Register {
 
     this.registerService.register(data).subscribe(
       (response) => {
+        this.isLoading = false;
         alert('Cadastro realizado com sucesso!');
         this.router.navigate(['']);
       },
       (error) => {
+        this.isLoading = false;
         console.error('Erro no cadastro:', error);
         alert('Erro ao realizar cadastro.');
       }

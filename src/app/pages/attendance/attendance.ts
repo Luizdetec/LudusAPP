@@ -22,6 +22,7 @@ export default class Attendance {
 
   turmaSelecionada = '';
   dataSelecionada = '';
+  isLoading: boolean = false;
   turmas = ['Jardim I', 'Jardim II', '1° Ano', '2° Ano', '3° Ano', '4° Ano', '5° Ano'];
 
   // Mapeamento das opções do select para os valores associados
@@ -45,16 +46,19 @@ export default class Attendance {
   }
 
   loadStudents(turmaId: string): void {
+    this.isLoading = true;
     this.attendanceService.getStudentsByClass(turmaId).subscribe(
       (response) => {
         this.students = response.alunos.map((aluno) => ({
           ...aluno,
           checked: true, // Adiciona a propriedade `checked` para controle da presença
         }));
+        this.isLoading = false;
         console.log('Alunos carregados:', this.students);
       },
       (error) => {
         console.error('Erro ao carregar alunos:', error);
+        this.isLoading = false;
       }
     );
   }
@@ -77,6 +81,7 @@ export default class Attendance {
       return;
     }
 
+    this.isLoading = true;
     const attendanceData: IAttendanceRequest = {
       data: this.dataSelecionada, // Data selecionada
       alunos: this.students.map((aluno) => ({
@@ -94,11 +99,13 @@ export default class Attendance {
     this.attendanceService.submitAttendance(attendanceData).subscribe(
       (response) => {
         console.log('Frequência enviada com sucesso:', response);
+        this.isLoading = false;
         alert('Frequência registrada com sucesso!');
         this.router.navigate(['/home']);
       },
       (error) => {
         console.error('Erro ao enviar frequência:', error);
+        this.isLoading = false;
         alert('Erro ao registrar frequência. Tente novamente.');
       }
     );

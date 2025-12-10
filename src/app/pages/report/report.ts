@@ -20,6 +20,7 @@ export default class Report {
   codigoTurma = ''; // Código da turma selecionada
   anoSelecionado = ''
   report: IstudentAttendance[] = [];
+  isLoading: boolean = false;
 
   constructor(private reportService: ReportService, private router: Router) {}
 
@@ -52,7 +53,7 @@ export default class Report {
       alert('Não há dados para exportar.');
       return;
     }
-
+    this.isLoading = true;
     const headers = ['Nome do Aluno', 'Turma', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
     const rows = this.report.map((aluno) => [
       aluno.nome_aluno,
@@ -86,6 +87,7 @@ export default class Report {
     link.click();
     document.body.removeChild(link);
 
+    this.isLoading = false
     console.log('Relatório exportado com sucesso!');
     this.showModal = true;
   }
@@ -104,6 +106,8 @@ export default class Report {
       alert('Por favor, selecione a turma e o ano antes de gerar o relatório.');
       return;
     }
+
+    this.isLoading = true;
 
     this.report = []; // Limpa os dados anteriores
 
@@ -154,8 +158,10 @@ export default class Report {
 
       // Converte o mapa de alunos para um array para exibição na tabela
       this.report = Object.values(alunosMap);
+      this.isLoading = false;
       console.log('Relatório gerado com sucesso:', this.report);
     }).catch((error) => {
+      this.isLoading = false;
       console.error('Erro ao gerar relatório:', error);
     });
   }

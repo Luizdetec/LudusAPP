@@ -48,6 +48,13 @@
   </div>
 </div>
 
+ <!-- Loading modal -->
+  @if (isLoading) {
+    <div class="loading-modal">
+      <div class="spinner"></div>
+    </div>
+  }
+
 <!-- modal -->
 <div class="export-modal" *ngIf="showModal">
   <div class="export-modal__backdrop" (click)="closeModal()"></div>
