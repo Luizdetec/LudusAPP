@@ -9,6 +9,10 @@
 .left-panel {
   flex: 1;
   background: #9aa0ff; /* ajuste para o tom desejado */
+  background-image: url('../../../../public/assets/images/Avatar.svg');
+  background-repeat: no-repeat;
+  background-size: cover; /* Faz a imagem ocupar toda a div */
+  background-position: center; /* Centraliza a imagem */
 }
 
 /* lado do formulário */

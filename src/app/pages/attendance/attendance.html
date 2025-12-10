@@ -50,15 +50,11 @@
               <td class="aluno-nome">{{ aluno.nome_aluno }}</td>
               <td>{{ aluno.matricula }}</td>
               <td>
-                <span class="status" ></span>
+                <span class="status" >{{ getStudentStatus(aluno) }}</span>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="add-justificativa-geral">
-        <span>+ Adicionar justificativa geral</span>
       </div>
 
       <button class="salvar-btn" (click)="submitAttendance()">Salvar</button>

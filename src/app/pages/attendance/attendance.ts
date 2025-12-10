@@ -40,6 +40,10 @@ export default class Attendance {
     this.router.navigate(['/home']);
   }
 
+  getStudentStatus(aluno: Istudents): string {
+    return aluno.checked ? 'Presente' : 'Faltou';
+  }
+
   // Método para obter o valor associado à turma selecionada
   getTurmaValue(): string {
     return this.turmaMap[this.turmaSelecionada] || '';
@@ -51,7 +55,7 @@ export default class Attendance {
       (response) => {
         this.students = response.alunos.map((aluno) => ({
           ...aluno,
-          checked: true, // Adiciona a propriedade `checked` para controle da presença
+          checked: false, // Adiciona a propriedade `checked` para controle da presença
         }));
         this.isLoading = false;
         console.log('Alunos carregados:', this.students);

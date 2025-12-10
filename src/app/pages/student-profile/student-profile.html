@@ -29,8 +29,9 @@
   </div>
 
   <div class="btn-box">
-    <app-button text="Editar" (click)="editarAluno()"></app-button>
-    <app-button text="Excluir" color="#000" textcolor="#fff" (click)="removerAluno()"></app-button>
+    <app-button text="Editar" (click)="editarAluno()" color="#fff" textcolor="#111" hoverColor="#f1f1f1"></app-button>
+    <app-button text="Excluir" color="#000" textcolor="#fff" (click)="removerAluno()" hoverColor="#444"></app-button>
+    
   </div>
 
   @if (isLoading) {

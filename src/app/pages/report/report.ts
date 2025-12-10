@@ -18,7 +18,8 @@ export default class Report {
   ano = [ '2025', '2026', '2027' , '2028', '2029', '2030' , '2031', '2032', '2033', '2034', '2035' , '2036', '2037', '2038', '2039', '2040' , '2041', '2042', '2043', '2044', '2045' ];
   turmaSelecionada = '';
   codigoTurma = ''; // Código da turma selecionada
-  anoSelecionado = ''
+  turmaExibida = ''; // Turma exibida na tabela
+  anoSelecionado = '';
   report: IstudentAttendance[] = [];
   isLoading: boolean = false;
 
@@ -158,6 +159,7 @@ export default class Report {
 
       // Converte o mapa de alunos para um array para exibição na tabela
       this.report = Object.values(alunosMap);
+      this.turmaExibida = this.turmaSelecionada; // Atualiza a turma exibida na tabela
       this.isLoading = false;
       console.log('Relatório gerado com sucesso:', this.report);
     }).catch((error) => {
