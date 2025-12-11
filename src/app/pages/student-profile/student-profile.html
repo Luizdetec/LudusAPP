@@ -1,39 +1,42 @@
 <div class="main-page">
-    <div class="header">
-        <button class="return-btn"><img src="assets/icons/close.svg" alt="" class="close-img"></button>
-        <span class="title">Alunos</span>
-        <span></span>
-    </div>
+  <div class="header">
+    <button class="return-btn" (click)="navigateToHome()">
+      <img src="assets/icons/close.svg" alt="Fechar página" class="close-img">
+    </button>
+    <span class="title">Alunos</span>
+    <span></span>
+  </div>
 
-    <div class="line-divisor"></div>
-    <div class="input-box">
-        <span class="title">Selecione a turma</span>
-        <app-dropdown [options]="['Turma A', 'Turma B', 'Turma C']"></app-dropdown>
+  <div class="line-divisor"></div>
+
+  <div class="input-box">
+    <span class="title">Selecione a turma</span>
+    <app-dropdown 
+      [options]="turmas" 
+      [(selected)]="turmaSelecionada" 
+      (selectedChange)="loadStudents()">
+    </app-dropdown>
+  </div>
+
+  <div class="main-box">
+    <div class="class-container" *ngFor="let aluno of students">
+      <app-ludus-checkbox 
+        [checked]="alunoSelecionadoId === aluno.id_aluno" 
+        (change)="selecionarAluno(aluno.id_aluno)">
+      </app-ludus-checkbox>
+      <span class="student-text">{{ aluno.nome_aluno }}</span>
     </div>
-    <div class="main-box">
-        <div class="class-container">
-            <app-checkbox></app-checkbox>
-            <span class="student-text">1 - Davi</span>
-        </div>
-        <div class="class-container">
-            <app-checkbox></app-checkbox>
-            <span class="student-text">2 - Brenda</span>
-        </div>
-        <div class="class-container">
-            <app-checkbox></app-checkbox>
-            <span class="student-text">3 - Lucas</span>
-        </div>
-        <div class="class-container">
-            <app-checkbox></app-checkbox>
-            <span class="student-text">4 - Maria</span>
-        </div>
-        <div class="class-container">
-            <app-checkbox></app-checkbox>
-            <span class="student-text">5 - Luiza</span>
-        </div>
+  </div>
+
+  <div class="btn-box">
+    <app-button text="Editar" (click)="editarAluno()" color="#fff" textcolor="#111" hoverColor="#f1f1f1"></app-button>
+    <app-button text="Excluir" color="#000" textcolor="#fff" (click)="removerAluno()" hoverColor="#444"></app-button>
+    
+  </div>
+
+  @if (isLoading) {
+    <div class="loading-modal">
+      <div class="spinner"></div>
     </div>
-    <div class="btn-box">
-        <app-button text="Editar"></app-button>
-        <app-button text="Excluir" color="#000" textcolor="#fff"></app-button>
-    </div>
+  }
 </div>

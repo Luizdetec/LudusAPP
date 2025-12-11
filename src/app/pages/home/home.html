@@ -9,11 +9,7 @@
     </div>
 
     <div class="top-right">
-      <div class="search">
-        <input type="text" placeholder="Buscar..." />
-        <button class="search-btn" aria-label="buscar">🔍</button>
-      </div>
-      <button class="settings" aria-label="configurações">⚪</button>
+      <app-button color="#111" hoverColor="#333" text="Sair" textcolor="#FEFBF0" (buttonClick)="navigateToLogin()"></app-button>
     </div>
   </header>
 
@@ -32,7 +28,7 @@
         <span class="card-action" aria-hidden="true"><img src="assets/icons/arrow-right.svg" alt=""></span>
       </a>
 
-      <a class="card card-green" href="/cadastro">
+      <a class="card card-green" (click)="navigateToNewStudent()">
         <span class="card-icon"><img src="assets/icons/Square academic cap.svg" alt=""></span>
         <div class="card-text">
           <h3>Matrícula</h3>
@@ -50,7 +46,7 @@
         <span class="card-action" aria-hidden="true"><img src="assets/icons/arrow-right.svg" alt=""></span>
       </a>
 
-      <a class="card card-orange" href="#">
+      <a class="card card-orange" (click)="navigateToStudentProfile()">
         <span class="card-icon"><img src="assets/icons/Backpack.svg" alt=""></span>
         <div class="card-text">
           <h3>Alunos</h3>

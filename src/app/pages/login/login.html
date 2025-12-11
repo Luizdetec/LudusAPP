@@ -2,18 +2,25 @@
   <div class="left-panel"></div>
 
   <div class="right-panel">
-
     <div class="form-wrap">
-        <span class="login-text">Login</span>
+      <span class="login-text">Login</span>
 
-        <div class="input-container">
-                <app-main-input-field label="Email" placeholder="Digite seu email"></app-main-input-field>
-                <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password"></app-main-input-field>
-        </div>
+      <div class="input-container">
+        <app-main-input-field label="Nome de Usuário" placeholder="Digite seu nome de usuário" [(ngModel)]="username"></app-main-input-field>
+        <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password" [(ngModel)]="password"></app-main-input-field>
+      </div>
 
-        <button>Entrar</button>
+      <button (click)="login()" [disabled]="isLoading">Entrar</button>
 
-        <span class="signup">Ainda não faz parte? <a href="#">Cadastre-se agora</a></span>
+      <span class="signup">Ainda não faz parte? <a (click)="navigateToRegister()">Cadastre-se agora</a></span>
     </div>
   </div>
+
+  <!-- Loading modal -->
+  @if (isLoading) {
+    <div class="loading-modal">
+      <div class="spinner"></div>
+    </div>
+  }
+  
 </div>

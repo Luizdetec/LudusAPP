@@ -12,26 +12,18 @@
       <span class="main-content-text">Registre a presença diária da turma</span>
 
       <div class="input-row">
-  
-        <div class="input-group">
-          <label for="turma">Turma</label>
-          <div class="select-wrapper">
-            <select id="turma" name="turma">
-              <option value="" disabled selected>01 — Berçário I</option>
-              <option value="bercario1">01 — Berçário I</option>
-              <option value="bercario2">02 — Berçário II</option>
-              <option value="maternal">03 — Maternal</option>
-            </select>
-          </div>
+        <div class="input-wrapper">
+          <app-select 
+            [options]="turmas" 
+            [(selected)]="turmaSelecionada" 
+            label="Turma" 
+            (selectedChange)="onTurmaChange($event)">
+          </app-select>
         </div>
 
-        <div class="input-group">
-          <label for="data">Data</label>
-          <div class="date-wrapper">
-            <input type="date" id="data" name="data" placeholder="00/00/0000">
-          </div>
+        <div class="input-wrapper">
+          <app-input-date label="Data" [(ngModel)]="dataSelecionada"></app-input-date>
         </div>
-
       </div>
 
       <span class="alunos-title">Lista de alunos</span>
@@ -42,38 +34,39 @@
             <tr>
               <th><input type="checkbox" /></th>
               <th>Nome do Aluno</th>
-              <th>Status <span class="arrow">↓</span></th>
-              <th>Observação</th>
+              <th>Matrícula</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let aluno of alunos">
-              <td><input type="checkbox" [(ngModel)]="aluno.checked" /></td>
-              <td class="aluno-nome">{{ aluno.nome }}</td>
+            <tr *ngFor="let aluno of students">
               <td>
-                <span class="status" [ngClass]="aluno.status">{{ aluno.status }}</span>
-                <span *ngIf="aluno.justificada" class="justificada">Justificada</span>
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="aluno.checked" 
+                  (change)="onStatusChange(aluno)" 
+                />
               </td>
+              <td class="aluno-nome">{{ aluno.nome_aluno }}</td>
+              <td>{{ aluno.matricula }}</td>
               <td>
-                <span *ngIf="aluno.observacao; else addJust">
-                  {{ aluno.observacao }}
-                </span>
-                <ng-template #addJust>
-                  <span class="add-justificativa">+ Adicionar justificativa</span>
-                </ng-template>
+                <span class="status" >{{ getStudentStatus(aluno) }}</span>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="add-justificativa-geral">
-        <span>+ Adicionar justificativa geral</span>
-      </div>
-
-      <button class="salvar-btn">Salvar</button>
+      <button class="salvar-btn" (click)="submitAttendance()">Salvar</button>
     </div>
   </div>
 
   <div class="right-panel"></div>
 </div>
+
+ <!-- Loading modal -->
+  @if (isLoading) {
+    <div class="loading-modal">
+      <div class="spinner"></div>
+    </div>
+  }

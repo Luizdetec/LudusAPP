@@ -104,6 +104,7 @@
   color: #6b63ff;
   text-decoration: none;
   font-weight: 700;
+  cursor: pointer;
 }
 
 button{
@@ -122,4 +123,35 @@ button{
     &:hover {
         background: #333333;
     }
+}
+
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Certifique-se de que o modal fique acima de outros elementos */
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ffffff; /* Cor do círculo */
+  border-top: 5px solid #6b63ff; /* Cor da parte giratória */
+  border-radius: 50%;
+  animation: spin 1s linear infinite; /* Animação de rotação */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

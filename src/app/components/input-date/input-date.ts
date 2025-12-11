@@ -1,11 +1,49 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-input-date',
-  imports: [],
   templateUrl: './input-date.html',
-  styleUrl: './input-date.scss',
+  styleUrls: ['./input-date.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputDate),
+      multi: true,
+    },
+  ],
 })
-export class InputDate {
+export class InputDate implements ControlValueAccessor {
   @Input() label: string = '';
+
+  value: string = ''; // Valor do input
+  disabled: boolean = false; // Estado de desabilitado
+
+  // Funções de controle do Angular Forms
+  private onChange: (value: string) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  // Métodos da interface ControlValueAccessor
+  writeValue(value: string): void {
+    this.value = value || '';
+  }
+
+  registerOnChange(fn: (value: string) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  // Método chamado quando o valor do input muda
+  onInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.value = input.value;
+    this.onChange(this.value); // Notifica o Angular Forms sobre a mudança
+  }
 }
