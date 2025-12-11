@@ -55,7 +55,7 @@ export default class Attendance {
       (response) => {
         this.students = response.alunos.map((aluno) => ({
           ...aluno,
-          checked: false, // Adiciona a propriedade `checked` para controle da presença
+          checked: true, // Adiciona a propriedade `checked` para controle da presença
         }));
         this.isLoading = false;
         console.log('Alunos carregados:', this.students);

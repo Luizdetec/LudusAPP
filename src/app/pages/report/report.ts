@@ -55,7 +55,7 @@ export default class Report {
       return;
     }
     this.isLoading = true;
-    const headers = ['Nome do Aluno', 'Turma', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    const headers = ['Nome do Aluno', 'Turma', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez', 'Porcentagem de falta'];
     const rows = this.report.map((aluno) => [
       aluno.nome_aluno,
       this.turmaSelecionada,
@@ -71,6 +71,7 @@ export default class Report {
       aluno.meses['Out'],
       aluno.meses['Nov'],
       aluno.meses['Dez'],
+      aluno.meses['Porcentagem de falta'],
     ]);
 
     const csvContent = [
@@ -133,7 +134,7 @@ export default class Report {
             alunosMap[aluno.nome_aluno] = {
               nome_aluno: aluno.nome_aluno,
               total_faltas: 0,
-              percentual_presenca: 0,
+              percentual_presenca: aluno.percentual_presenca, // ou o campo correto     // <-- adicione se vier da API
               meses: {
                 Jan: 0, Fev: 0, Mar: 0, Abr: 0, Mai: 0, Jun: 0,
                 Jul: 0, Ago: 0, Set: 0, Out: 0, Nov: 0, Dez: 0,
