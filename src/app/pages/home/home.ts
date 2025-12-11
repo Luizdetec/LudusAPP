@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonComponent } from "../../components/button/button.component";
+import { SharedDataService } from '../../services/shared-data/shared-data.service'; // importe o serviço
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,14 @@ import { ButtonComponent } from "../../components/button/button.component";
 })
 export default class Home {
 
-  constructor(private router: Router) {}
+  professorNome: string = '';
+
+  constructor(
+    private router: Router,
+    private sharedDataService: SharedDataService // injete o serviço
+  ) {
+    this.professorNome = this.sharedDataService.getProfessor(); // pegue o nome do professor
+  }
 
   navigateToAttendance() {
     this.router.navigate(['/frequencia']);

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
+import { SharedDataService } from '../../services/shared-data/shared-data.service';
 import { InputFieldComponent } from "../../components/main-input-field/input-field.component";
 import { FormsModule } from "@angular/forms";
 import { Router } from '@angular/router';
@@ -11,7 +12,11 @@ import { Router } from '@angular/router';
   styleUrl: './login.scss',
 })
 export default class Login {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private sharedDataService: SharedDataService
+  ) {}
 
   username: string = '';
   password: string = '';
@@ -22,6 +27,10 @@ export default class Login {
     this.loginService.login(this.username, this.password).subscribe(
       (response) => {
         this.isLoading = false; // Finaliza o loading
+        // Usar o campo correto do modelo: nome_professor
+        if (response.nome_professor) {
+          this.sharedDataService.setProfessor(response.nome_professor);
+        }
         this.navigateToHome();
       },
       (error) => {

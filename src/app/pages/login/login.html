@@ -7,7 +7,7 @@
 
       <div class="input-container">
         <app-main-input-field label="Nome de Usuário" placeholder="Digite seu nome de usuário" [(ngModel)]="username"></app-main-input-field>
-        <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password" [(ngModel)]="password"></app-main-input-field>
+        <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password" [(ngModel)]="password" (keydown.enter)="login()"></app-main-input-field>
       </div>
 
       <button (click)="login()" [disabled]="isLoading">Entrar</button>
