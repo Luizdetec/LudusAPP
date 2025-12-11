@@ -40,5 +40,10 @@ export default class Register {
         alert('Erro ao realizar cadastro.');
       }
     );
+    
+  }
+
+  returnToLogin() {
+    this.router.navigate(['']);
   }
 }

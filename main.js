@@ -28,7 +28,8 @@ function createWindow() {
     );
 
     // Mantenha o DevTools para o console do Angular/rede
-    win.webContents.openDevTools(); 
+    //win.webContents.openDevTools(); 
+    autohideMenuBar: true;
 }
 
 function startFastAPIServer() {

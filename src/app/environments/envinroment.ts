@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://ludusapi.onrender.com'
+  apiUrl: 'http://localhost:9876'
 };

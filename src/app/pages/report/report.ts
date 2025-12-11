@@ -55,7 +55,12 @@ export default class Report {
       return;
     }
     this.isLoading = true;
-    const headers = ['Nome do Aluno', 'Turma', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez', 'Porcentagem de falta'];
+    const headers = [
+      'Nome do Aluno',
+      'Turma',
+      'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
+      'Percentual de presença' // <-- Adicionado
+    ];
     const rows = this.report.map((aluno) => [
       aluno.nome_aluno,
       this.turmaSelecionada,
@@ -71,7 +76,7 @@ export default class Report {
       aluno.meses['Out'],
       aluno.meses['Nov'],
       aluno.meses['Dez'],
-      aluno.meses['Porcentagem de falta'],
+      aluno.percentual_presenca?.toFixed(2) + '%' // <-- Adicionado
     ]);
 
     const csvContent = [
