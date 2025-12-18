@@ -1,0 +1,117 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule  } from '@angular/common';
+import { Router } from '@angular/router';
+import { Select } from "../../components/select/select";
+import { InputDate } from "../../components/input-date/input-date";
+import { AttendanceService } from '../../services/attendance/attendance.service';
+import { Istudents, IAttendanceRequest } from '../../models/attendance-model';
+
+@Component({
+  selector: 'app-attendance',
+  imports: [ FormsModule, CommonModule, Select, InputDate],
+  templateUrl: './attendance.html',
+  styleUrl: './attendance.scss',
+  standalone: true
+})
+export default class Attendance {
+  constructor(private router: Router, private attendanceService: AttendanceService) {}
+
+  students: Istudents[] = [];
+  studentsAttendance: IAttendanceRequest[] = [];
+
+  turmaSelecionada = '';
+  dataSelecionada = '';
+  isLoading: boolean = false;
+  turmas = ['Jardim I', 'Jardim II', '1° Ano', '2° Ano', '3° Ano', '4° Ano', '5° Ano'];
+
+  // Mapeamento das opções do select para os valores associados
+  turmaMap: { [key: string]: string } = {
+    'Jardim I': 'J1',
+    'Jardim II': 'J2',
+    '1° Ano': '1A',
+    '2° Ano': '2A',
+    '3° Ano': '3A',
+    '4° Ano': '4A',
+    '5° Ano': '5A',
+  };
+
+  returnHome() {
+    this.router.navigate(['/home']);
+  }
+
+  getStudentStatus(aluno: Istudents): string {
+    return aluno.checked ? 'Presente' : 'Faltou';
+  }
+
+  // Método para obter o valor associado à turma selecionada
+  getTurmaValue(): string {
+    return this.turmaMap[this.turmaSelecionada] || '';
+  }
+
+  loadStudents(turmaId: string): void {
+    this.isLoading = true;
+    this.attendanceService.getStudentsByClass(turmaId).subscribe(
+      (response) => {
+        this.students = response.alunos.map((aluno) => ({
+          ...aluno,
+          checked: true, // Adiciona a propriedade `checked` para controle da presença
+        }));
+        this.isLoading = false;
+        console.log('Alunos carregados:', this.students);
+      },
+      (error) => {
+        console.error('Erro ao carregar alunos:', error);
+        this.isLoading = false;
+      }
+    );
+  }
+
+  onTurmaChange(turma: string): void {
+    this.turmaSelecionada = turma; // Atualiza a turma selecionada
+    const turmaId = this.getTurmaValue(); // Obtém o valor associado à turma
+    console.log('Turma selecionada:', this.turmaSelecionada, 'Valor associado:', turmaId);
+    this.loadStudents(turmaId); // Faz a chamada da API
+  }
+
+  onStatusChange(aluno: any): void {
+    aluno.status = aluno.checked ? 'Presente' : 'Falta';
+    console.log(`Status do aluno ${aluno.nome_aluno}: ${aluno.status}`);
+  }
+
+  submitAttendance(): void {
+    if (!this.dataSelecionada) {
+      alert('Por favor, selecione uma data antes de enviar a frequência.');
+      return;
+    }
+
+    this.isLoading = true;
+    const attendanceData: IAttendanceRequest = {
+      data: this.dataSelecionada, // Data selecionada
+      alunos: this.students.map((aluno) => ({
+        id_aluno: aluno.id_aluno,
+        nome_aluno: aluno.nome_aluno,
+        matricula: aluno.matricula,
+        presenca: aluno.checked ? 'P' : 'F', // Explicitamente 'P' ou 'F'
+        justificativa: null, // Pode ser preenchido futuramente
+        observacoes: null, // Pode ser preenchido futuramente
+      })),
+    };
+
+    console.log('Dados de frequência preparados para envio:', attendanceData);
+
+    this.attendanceService.submitAttendance(attendanceData).subscribe(
+      (response) => {
+        console.log('Frequência enviada com sucesso:', response);
+        this.isLoading = false;
+        alert('Frequência registrada com sucesso!');
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        console.error('Erro ao enviar frequência:', error);
+        this.isLoading = false;
+        alert('Erro ao registrar frequência. Tente novamente.');
+      }
+    );
+  }
+}

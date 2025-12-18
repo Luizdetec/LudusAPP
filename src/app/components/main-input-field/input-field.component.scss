@@ -1,0 +1,72 @@
+@use '../../../Styles/variables.scss' as *;
+
+:host {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #5b6776;
+  flex: 1;
+}
+
+.input-box {
+  border: 1px solid var(--Brand-Black, #111);
+  width: 100%;
+  height: 3.25rem;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #FEFBF0;
+  box-shadow: 0 0.0625rem 0.125rem 0 rgba(16, 24, 40, 0.05);
+  padding: 15px 20px;
+  color: $neutral-90 !important;
+
+  &:focus {
+    border-width: 2px;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    background-color: $neutral-30;
+    border: 1px solid $neutral-40;
+    cursor: not-allowed;
+    color: #64748b !important;
+  }
+
+  &.error {
+    border-color: #d1493d;
+  }
+}
+
+.error-message {
+  color: #d1493d;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+}
+
+.title-input {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.mark {
+  color: $brand-palette-red-mn;
+}
+
+label {
+  color: var(--Brand-Black, #111);
+  font-size: 16px;
+  font-style: normal;
+  line-height: 25px;
+  font-weight: 500;
+}
+
+input[type='checkbox' i] {
+  cursor: pointer;
+}

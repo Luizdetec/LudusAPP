@@ -1,0 +1,15 @@
+<button
+  class="custom-button"
+  [class.outlined]="outlined"
+  [class.disabled]="disabled"
+  [style.--bg-color]="color"
+  [style.--hover-color]="hoverColor"
+  [style.--text-color]="textcolor"
+  [style.width]="width"
+  [class.justify-content-center]="centered"
+  (click)="onClick()" 
+  [disabled]="disabled"
+>
+  <img *ngIf="icon" [src]="icon" alt="Icon" />
+  {{ text }}
+</button>

@@ -1,0 +1,27 @@
+<div class="login-page">
+  <div class="left-panel"></div>
+
+  <div class="right-panel">
+
+    <div class="form-wrap">
+        <span class="login-text">Cadastro de professor</span>
+
+        <div class="input-container">
+                <app-main-input-field label="Nome de usuário" placeholder="Digite o nome de usuario" [(ngModel)]="login"></app-main-input-field>
+                <app-main-input-field label="Nome" placeholder="Digite seu nome e sobrenome" [(ngModel)]="teacherName"></app-main-input-field>
+                <app-main-input-field label="Senha" placeholder="Digite sua senha" type="password" [(ngModel)]="password" (keydown.enter)="register()"></app-main-input-field>
+        </div>
+
+        <button (click)="register()">Criar Conta</button>
+
+        <span class="signup">Já possui uma conta? <a (click)="returnToLogin()">Faça login</a></span>
+    </div>
+  </div>
+
+  <!-- Loading modal -->
+  @if (isLoading) {
+    <div class="loading-modal">
+      <div class="spinner"></div>
+    </div>
+  }
+</div>

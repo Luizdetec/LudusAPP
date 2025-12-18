@@ -1,0 +1,72 @@
+<div class="login-page">
+
+  <div class="left-panel">
+    <div class="header">
+      <span class="header-text">Frequência</span>
+      <button class="cancel-btn" (click)="returnHome()">Cancelar</button>
+    </div>
+
+    <div class="line-divisor"></div>
+
+    <div class="main-content">
+      <span class="main-content-text">Registre a presença diária da turma</span>
+
+      <div class="input-row">
+        <div class="input-wrapper">
+          <app-select 
+            [options]="turmas" 
+            [(selected)]="turmaSelecionada" 
+            label="Turma" 
+            (selectedChange)="onTurmaChange($event)">
+          </app-select>
+        </div>
+
+        <div class="input-wrapper">
+          <app-input-date label="Data" [(ngModel)]="dataSelecionada"></app-input-date>
+        </div>
+      </div>
+
+      <span class="alunos-title">Lista de alunos</span>
+
+      <div class="alunos-table-wrapper">
+        <table class="alunos-table">
+          <thead>
+            <tr>
+              <th><input type="checkbox" /></th>
+              <th>Nome do Aluno</th>
+              <th>Matrícula</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let aluno of students">
+              <td>
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="aluno.checked" 
+                  (change)="onStatusChange(aluno)" 
+                />
+              </td>
+              <td class="aluno-nome">{{ aluno.nome_aluno }}</td>
+              <td>{{ aluno.matricula }}</td>
+              <td>
+                <span class="status" >{{ getStudentStatus(aluno) }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="salvar-btn" (click)="submitAttendance()">Salvar</button>
+    </div>
+  </div>
+
+  <div class="right-panel"></div>
+</div>
+
+ <!-- Loading modal -->
+  @if (isLoading) {
+    <div class="loading-modal">
+      <div class="spinner"></div>
+    </div>
+  }

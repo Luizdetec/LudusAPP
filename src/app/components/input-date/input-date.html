@@ -1,0 +1,17 @@
+<div class="input-group">
+  <div class="label-wrapper">
+    <label for="data">{{ label }}</label>
+    <label *ngIf="required" class="mark">*</label>
+  </div>
+  <div class="date-wrapper">
+    <input
+      type="date"
+      id="data"
+      name="data"
+      [value]="value"
+      (input)="onInput($event)"
+      [disabled]="disabled"
+      placeholder="00/00/0000"
+    />
+  </div>
+</div>

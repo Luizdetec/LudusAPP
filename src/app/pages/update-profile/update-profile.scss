@@ -1,0 +1,193 @@
+@use '../../../styles/variables.scss' as *;
+
+.main-page{
+    min-height: 100vh;
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+}
+
+.left-panel {
+  flex: 2.5;
+  padding: 2rem;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.header-text{
+  color: #000;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px; /* 123.077% */
+}
+
+.cancel-btn{
+  padding: 10px 20px;
+  background-color: #FEFBF0;
+  border: none;
+  color: var(--Brand-Black, #111);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background: var(--Brand-Off-White, #FEFBF0);
+
+  &:hover{
+    cursor: pointer;
+    background-color: #fbf8ef;
+  }
+}
+
+.line-divisor{
+    @include line-divisor;
+}
+
+.main-content{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sub-title{
+  color: var(--Brand-Black, #111);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.student-info{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto; 
+  max-height: 60vh;
+  padding-right: 1rem; // Adiciona espaço entre o conteúdo e a barra lateral
+
+  /* Estilização da barra de rolagem */
+  &::-webkit-scrollbar {
+    width: 8px; // Largura da barra lateral
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #DAD8CF; // Cor do fundo da barra
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #111; // Cor da barra de rolagem
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #444; // Cor ao passar o mouse
+  }
+}
+
+.input-row{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.select-wrapper{
+  width: 50%;
+}
+
+.inner-box{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--Brand-Black, #111);
+  padding: 1rem;
+}
+
+.checkbox-container{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.minor-box{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 25%;
+}
+
+.grid-container{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.checkbox-boxes{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--Brand-Black, #111);
+  padding: 1rem;
+  height: 25rem;
+}
+
+.save-btn {
+  width: 100%; // Ocupa toda a largura disponível
+  padding: 1rem 0; // Espaçamento interno
+  background-color: #111; // Cor de fundo
+  color: #fff; // Cor do texto
+  font-size: 1.5rem; // Tamanho da fonte
+  font-family: "Inter", sans-serif; // Fonte
+  font-weight: 500; // Peso da fonte
+  border: none; // Remove bordas
+  cursor: pointer; // Cursor de interação
+  text-align: center; // Centraliza o texto
+  transition: background-color 0.2s; // Transição suave ao passar o mouse
+
+  &:hover {
+    background-color: #222; // Cor ao passar o mouse
+  }
+
+  &:focus {
+    outline: none; // Remove o contorno padrão
+  }
+}
+
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Certifique-se de que o modal fique acima de outros elementos */
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ffffff; /* Cor do círculo */
+  border-top: 5px solid #6b63ff; /* Cor da parte giratória */
+  border-radius: 50%;
+  animation: spin 1s linear infinite; /* Animação de rotação */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

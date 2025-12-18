@@ -1,0 +1,164 @@
+@use '../../../styles/variables.scss' as *;
+
+.report-page{
+  padding: 28px 40px;
+  min-height: 100vh;
+  background: var(--Page-Background, #fbf8ef);
+  box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #111;
+}
+
+/* top controls */
+.report-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.report-controls{
+  display:flex;
+  gap: 10px;
+  align-items:flex-end;
+}
+.date-input{
+  height:30px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.12);
+  padding:8px 12px;
+  font-weight:600;
+}
+.report-actions{ display:flex; gap:12px; align-items:center; }
+
+/* title */
+.report-title{
+  text-align:center;
+  font-size:48px;
+  margin: 8px 0 18px;
+  letter-spacing:4px;
+  font-weight:700;
+  color:#111;
+}
+
+/* table area */
+.table-wrap{
+  border-radius:8px;
+  border:2px solid rgba(0,0,0,0.12);
+  background: linear-gradient(180deg,#fbf8ef,#f3eae0);
+  padding: 10px;
+  overflow:auto;
+  max-height: 560px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+.report-table{
+  width:100%;
+  border-collapse: collapse;
+  min-width: 1200px;
+}
+.report-table th,
+.report-table td{
+  border:1px solid rgba(0,0,0,0.08);
+  padding:6px 10px;
+  text-align:left;
+  font-size:14px;
+  background: transparent;
+}
+.report-table thead th{
+  background: rgba(255,255,255,0.6);
+  font-weight:700;
+  text-transform: none;
+  border-bottom:2px solid rgba(0,0,0,0.12);
+}
+.index-col{
+  width:28px;
+  text-align:center;
+  background: rgba(0,0,0,0.03);
+}
+.student-name{ font-weight:700; color:#000; }
+.matricula{ width:90px; text-align:center; color:#333; }
+.stat{ width:40px; text-align:center; }
+
+/* buttons tweak (uses app-button inner button) */
+.btn-export ::ng-deep button{
+  background:#2d254a !important;
+  color:#fff !important;
+  border-radius:8px !important;
+  padding:10px 18px !important;
+}
+
+/* modal */
+.export-modal{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+.export-modal__backdrop{
+  position:absolute; inset:0; background: rgba(0,0,0,0.32);
+}
+.export-modal__card{
+  position:relative;
+  z-index:2;
+  width: 360px;
+  max-width: calc(100% - 48px);
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.28);
+  text-align:center;
+}
+.export-modal__card h3{
+  margin:0 0 8px; font-size:18px; font-weight:700;
+}
+.export-modal__card p{ margin:0 0 16px; color: rgba(0,0,0,0.6); }
+.modal-actions{ display:flex; justify-content:center; gap:12px; }
+
+/* custom scrollbar inside table-wrap */
+.table-wrap::-webkit-scrollbar{ height:12px; }
+.table-wrap::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.12); border-radius:8px; }
+.table-wrap::-webkit-scrollbar-track{ background: transparent; }
+
+/* responsive */
+@media (max-width: 1100px){
+  .report-title{ font-size:38px; }
+  .table-wrap{ max-height: 420px; }
+}
+@media (max-width: 760px){
+  .report-top{ flex-direction:column; align-items:stretch; gap:12px; }
+  .report-actions{ justify-content:flex-end; }
+  .report-table{ min-width: 900px; }
+}
+
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Certifique-se de que o modal fique acima de outros elementos */
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ffffff; /* Cor do círculo */
+  border-top: 5px solid #6b63ff; /* Cor da parte giratória */
+  border-radius: 50%;
+  animation: spin 1s linear infinite; /* Animação de rotação */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

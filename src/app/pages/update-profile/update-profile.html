@@ -1,0 +1,244 @@
+<div class="main-page">
+    <div class="left-panel">
+        <div class="header">
+            <span class="header-text">Editar Perfil de Aluno</span>
+            <button class="cancel-btn" (click)="cancelEdit()">Cancelar</button>
+        </div>
+
+        <div class="line-divisor"></div>
+
+        <div class="main-content">
+            <span class="sub-title">Identificação do aluno</span>
+
+            <div class="student-info">
+                <app-main-input-field label="Nome do aluno" placeholder="Ex: Maria Clara da silva"
+                    [(ngModel)]="studentData.ident_aluno.nome_aluno"></app-main-input-field>
+                <app-main-input-field label="NIS" [(ngModel)]="studentData.ident_aluno.nis"></app-main-input-field>
+                <app-main-input-field label="Digite o ID do aluno INEP" [(ngModel)]="studentData.ident_aluno.codigo_inep"></app-main-input-field>
+
+                <div class="input-row">
+                    <div class="select-wrapper">
+                        <app-select 
+                          label="Identidade racial" 
+                          [options]="races" 
+                          [(selected)]="studentData.ident_aluno.aluno_raca" 
+                          (selectedChange)="onRaceChange($event)">
+                        </app-select>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <app-select 
+                          label="Sexo *" 
+                          [options]="sexes" 
+                          [(selected)]="studentData.ident_aluno.sexo" 
+                          (selectedChange)="onSexChange($event)">
+                        </app-select>
+                    </div>
+                </div>
+
+                <app-main-input-field label="UF *" [(ngModel)]="studentData.ident_aluno.uf"></app-main-input-field>
+                <app-main-input-field label="Município de Nascimento *"
+                    [(ngModel)]="studentData.ident_aluno.identidade_docestrangeiro_passaporte">
+                </app-main-input-field>
+                <app-main-input-field label="Nacionalidade" [(ngModel)]="studentData.ident_aluno.nacionalidade"></app-main-input-field>
+                <app-main-input-field label="Tipo de Nascimento" [(ngModel)]="studentData.ident_aluno.tipo_nascimento"></app-main-input-field>
+                <app-input-date label="Data de Nascimento *" [(ngModel)]="studentData.ident_aluno.data_nascimento"></app-input-date>
+                
+                <app-select 
+                  label="Tipo da certidão civil" 
+                  [options]="certificateType" 
+                  [(selected)]="studentData.certidao.tipo_certidao_civil" 
+                  (selectedChange)="onCertificateTypeChange($event)">
+                </app-select>
+
+                <div class="inner-box">
+                    <span>Certidão Modelo Antigo</span>
+                    <div class="line-divisor"></div>
+                    <div class="input-row">
+                        <app-main-input-field label="Número Termo" [(ngModel)]="studentData.certidao.num_termo">
+                        </app-main-input-field>
+
+                        <app-main-input-field label="Livro" [(ngModel)]="studentData.certidao.livro">
+                        </app-main-input-field>
+
+                        <app-main-input-field label="Folha" [(ngModel)]="studentData.certidao.folha">
+                        </app-main-input-field>
+
+                        <app-input-date label="Data de Expedição"
+                            [(ngModel)]="studentData.certidao.data_expedicao_certidao"
+                            (ngModelChange)="onDateEmissionChange($event)">
+                        </app-input-date>
+                    </div>
+                </div>
+
+                <div class="inner-box">
+                    <span>Certidão Modelo Novo</span>
+                    <div class="line-divisor"></div>
+                    <div class="input-row">
+                        <app-main-input-field label="Número de Matrícula (Registro Civil)" [(ngModel)]="studentData.certidao.num_matricula_registro_civil"></app-main-input-field>
+                    </div>
+                </div>
+
+                <div class="inner-box">
+                    <span>Informações Documentadas</span>
+                    <div class="line-divisor"></div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="UF - Cartório" [(ngModel)]="studentData.ident_aluno.uf_cartorio"></app-main-input-field>
+                        <app-main-input-field label="Orgão Emissor" [(ngModel)]="studentData.ident_aluno.orgao_emissor"></app-main-input-field>
+                        <app-main-input-field label="Município do Cartório" [(ngModel)]="studentData.ident_aluno.municipio_cartorio"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="Nome do Cartório" [(ngModel)]="studentData.ident_aluno.nome_cartorio"></app-main-input-field>
+                        <app-main-input-field
+                            label="Identidade, Documento Estrangeiro ou Passaporte" [(ngModel)]="studentData.ident_aluno.identidade_docestrangeiro_passaporte"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="Cadastro de Pessoa Física (CPF) *" [(ngModel)]="studentData.ident_aluno.cpf"></app-main-input-field>
+                        <app-main-input-field label="Cartão SUS" [(ngModel)]="studentData.ident_aluno.cartao_sus"></app-main-input-field>
+                        <app-input-date label="Data de Expedição" [(ngModel)]="studentData.ident_aluno.data_expedicao_identidade" (ngModelChange)="onDateExpeditionChange($event)"></app-input-date>
+                    </div>
+                </div>
+
+                <div class="inner-box">
+                    <span>Informações de Matrícula</span>
+                    <div class="line-divisor"></div>
+                    <app-main-input-field label="Nome da Escola" [(ngModel)]="studentData.info_matricula.nome_escola"></app-main-input-field>
+
+                    <div class="input-row">
+                        <app-input-date label="Data de Ingresso" [(ngModel)]="studentData.info_matricula.data_ingresso_escola"(ngModelChange)="onDateIngressChange($event)"></app-input-date>
+                        <app-input-date label="Data de Matrícula" [(ngModel)]="studentData.info_matricula.data_matricula" (ngModelChange)="onDateMatriculaChange($event)"></app-input-date>
+                        <app-main-input-field label="Matrícula *" [(ngModel)]="studentData.info_matricula.matricula"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <app-main-input-field label="Código Senso Inep" [(ngModel)]="studentData.info_matricula.cod_censo_inep"></app-main-input-field>
+                        <app-main-input-field label="Código Turma" [(ngModel)]="studentData.info_matricula.codigo_turma"></app-main-input-field>
+                        <app-main-input-field label="Ano Letivo *" [(ngModel)]="studentData.info_matricula.ano_letivo"></app-main-input-field>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="select-wrapper">
+                            <app-select 
+                              label="Turno" 
+                              [options]="shift" 
+                              [(selected)]="studentData.info_matricula.turno" 
+                              (selectedChange)="onShiftChange($event)">
+                            </app-select>
+                        </div>
+                        <div class="select-wrapper">
+                            <app-select 
+                              label="Série" 
+                              [options]="class" 
+                              [(selected)]="studentData.info_matricula.codigo_serie" 
+                              (selectedChange)="onClassChange($event)">
+                            </app-select>
+                        </div>
+                        <div class="select-wrapper">
+                            <app-select 
+                              label="Código de Procedência" 
+                              [options]="Origin" 
+                              [(selected)]="studentData.info_matricula.codigo_procedencia" 
+                              (selectedChange)="onOriginChange($event)">
+                            </app-select>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <app-ludus-checkbox text="Programa Bolsa Família" [checked]="studentData.info_matricula.participa_programa"></app-ludus-checkbox>
+                        <app-ludus-checkbox text="Transporte Escolar" [checked]="studentData.info_matricula.transporte_escolar"></app-ludus-checkbox>
+                        <app-ludus-checkbox text="Documento pendente?" [checked]="studentData.info_matricula.documento_pendente"></app-ludus-checkbox>
+                    </div>
+
+                    <app-main-input-field label="Transferência" [(ngModel)]="studentData.info_matricula.transferencia"></app-main-input-field>
+                </div>
+
+                <div class="inner-box">
+                    <span>Dados dos pais/responsáveis</span>
+                    <div class="line-divisor"></div>
+                    <div class="input-row">
+                        <app-main-input-field label="Nome da Mãe" [(ngModel)]="studentData.responsaveis.nome_mae"></app-main-input-field>
+                        <app-main-input-field label="Nome do Pai" [(ngModel)]="studentData.responsaveis.nome_pai"></app-main-input-field>
+                        <app-main-input-field label="Nome do Responsável" [(ngModel)]="studentData.responsaveis.responsavel"></app-main-input-field>
+                    </div>
+
+                    <div class="minor-box">
+                        <app-main-input-field label="CPF do Responsável" type="number" [(ngModel)]="studentData.responsaveis.cpf_responsavel"></app-main-input-field>
+                        <app-main-input-field label="RG do Responsável" type="number" [(ngModel)]="studentData.responsaveis.rg_responsavel"></app-main-input-field>
+                    </div>
+
+
+                </div>
+
+                <div class="grid-container">
+                    <div class="select-wrapper">
+                        <div class="checkbox-boxes">
+                            <span>Transtorno Global de Desenvolvimento</span>
+                            <div class="line-divisor"></div>
+                            <app-ludus-checkbox text="Autismo" [(checked)]="studentData.saude.autismo"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Síndrome de Rett" [(checked)]="studentData.saude.rett"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Sindrome de Asperger" [(checked)]="studentData.saude.asperger"></app-ludus-checkbox>
+                            <app-ludus-checkbox
+                                text="Transtorno desintegrativo da infância Altas habilidades / Superdotação" [(checked)]="studentData.saude.transtorno_desintegrativo"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Altas habilidades / Superdotação" [(checked)]="studentData.saude.altas_habilidades"></app-ludus-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="select-wrapper">
+                        <div class="checkbox-boxes">
+                            <span>Deficiências</span>
+                            <div class="line-divisor"></div>
+                            <app-ludus-checkbox text="Baixa Visão" [(checked)]="studentData.saude.baixa_visao"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Cegueira" [(checked)]="studentData.saude.cegueira"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Auditiva" [(checked)]="studentData.saude.auditiva"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Intelectual" [(checked)]="studentData.saude.intelectual"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Física" [(checked)]="studentData.saude.fisica"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Deficiência Múltipla" [(checked)]="studentData.saude.multipla"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Síndrome de Down" [(checked)]="studentData.saude.sindrome_down"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Surdez" [(checked)]="studentData.saude.surdez"></app-ludus-checkbox>
+                            <app-ludus-checkbox text="Surdocegueira" [(checked)]="studentData.saude.surdocegueira"></app-ludus-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <app-select 
+                  label="Vacina" 
+                  [options]="vaccine" 
+                  [(selected)]="studentData.saude.vacina" 
+                  (selectedChange)="onVaccineChange($event)">
+                </app-select>
+
+                <div class="inner-box">
+                    <span>Endereço</span>
+                    <div class="line-divisor"></div>
+                    <app-main-input-field label="Endereço" [(ngModel)]="studentData.info_endereco.endereco"></app-main-input-field>
+                    <div class="input-row">
+                        <app-main-input-field label="Número" [(ngModel)]="studentData.info_endereco.numero_endereco"></app-main-input-field>
+                        <app-main-input-field label="Complemento" [(ngModel)]="studentData.info_endereco.complemento"></app-main-input-field>
+                        <app-main-input-field label="CEP" [(ngModel)]="studentData.info_endereco.cep"></app-main-input-field>
+                    </div>
+                    <div class="input-row">
+                        <app-main-input-field label="Município" [(ngModel)]="studentData.info_endereco.municipio"></app-main-input-field>
+                        <app-main-input-field label="Bairro" [(ngModel)]="studentData.info_endereco.bairro"></app-main-input-field>
+                        <app-main-input-field label="UF" [(ngModel)]="studentData.info_endereco.uf"></app-main-input-field>
+                    </div>
+                    <div class="input-row">
+                        <app-main-input-field label="Telefone" [(ngModel)]="studentData.info_endereco.telefone"></app-main-input-field>
+                        <app-main-input-field label="e-mail" [(ngModel)]="studentData.info_endereco.email"></app-main-input-field>
+                    </div>
+                    <app-select label="Zona" [options]="zone" [selected]="studentData.info_endereco.zona" (selectedChange)="onZoneChange($event)"></app-select>
+                </div>
+                <app-main-input-field label="Ressalvas" [(ngModel)]="studentData.info_matricula.ressalvas" ></app-main-input-field>
+            </div>
+        </div>
+        <button class="save-btn" (click)="salvarAlteracoes()">Salvar</button>
+    </div>
+
+     <!-- Loading modal -->
+  @if (isLoading) {
+    <div class="loading-modal">
+      <div class="spinner"></div>
+    </div>
+  }
+</div>

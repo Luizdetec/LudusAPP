@@ -1,11 +1,14 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
+# Compiled output
 /dist
 /tmp
 /out-tsc
 /bazel-out
-
+backend/
+release/
+dist/
 # Node
 /node_modules
 npm-debug.log
