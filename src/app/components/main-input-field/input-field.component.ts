@@ -29,6 +29,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() placeholder = '';
   @Input() cpfCnpj = false;
   @Input() type: string = '';
+  @Input() error: string = '';
 
   private _model = '';
   formattedValue = '';

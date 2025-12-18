@@ -49,56 +49,6 @@ export default class Report {
 
   showModal = false;
 
-  exportReport(): void {
-    if (!this.report || this.report.length === 0) {
-      alert('Não há dados para exportar.');
-      return;
-    }
-    this.isLoading = true;
-    const headers = [
-      'Nome do Aluno',
-      'Turma',
-      'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',
-      'Percentual de presença' // <-- Adicionado
-    ];
-    const rows = this.report.map((aluno) => [
-      aluno.nome_aluno,
-      this.turmaSelecionada,
-      aluno.meses['Jan'],
-      aluno.meses['Fev'],
-      aluno.meses['Mar'],
-      aluno.meses['Abr'],
-      aluno.meses['Mai'],
-      aluno.meses['Jun'],
-      aluno.meses['Jul'],
-      aluno.meses['Ago'],
-      aluno.meses['Set'],
-      aluno.meses['Out'],
-      aluno.meses['Nov'],
-      aluno.meses['Dez'],
-      aluno.percentual_presenca?.toFixed(2) + '%' // <-- Adicionado
-    ]);
-
-    const csvContent = [
-      headers.join(','), // Adiciona os cabeçalhos
-      ...rows.map((row) => row.join(',')), // Adiciona as linhas de dados
-    ].join('\n'); // Junta tudo com quebra de linha
-
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `frequencia_alunos_${this.turmaSelecionada}_${this.anoSelecionado}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    this.isLoading = false
-    console.log('Relatório exportado com sucesso!');
-    this.showModal = true;
-  }
-
   closeModal(): void {
     this.showModal = false;
     this.router.navigate(['/home']);
@@ -108,75 +58,59 @@ export default class Report {
     this.router.navigate(['/home']);
   }
 
-  generateReport(): void {
-    if (!this.codigoTurma || !this.anoSelecionado) {
-      alert('Por favor, selecione a turma e o ano antes de gerar o relatório.');
-      return;
-    }
-
+  async buscarRelatorio() {
+    if (!this.codigoTurma || !this.anoSelecionado) return;
     this.isLoading = true;
-
-    this.report = []; // Limpa os dados anteriores
-
-    const alunosMap: { [nome: string]: IstudentAttendance } = {};
-
-    const promises: Promise<IstudentAttendance[]>[] = []; // Array para armazenar as chamadas à API
-
-    for (let mes = 1; mes <= 12; mes++) {
-      const promise = this.reportService.getAttendanceReport(this.codigoTurma, this.anoSelecionado, mes)
-        .toPromise()
-        .then((response) => response || []); // Garante que o retorno seja um array vazio se for undefined
-      promises.push(promise);
-    }
-
-    // Aguarda todas as chamadas à API serem concluídas
-    Promise.all(promises).then((responses) => {
-      responses.forEach((response, index) => {
-        const mes = index + 1; // Mês correspondente à iteração (1 = Janeiro, 2 = Fevereiro, etc.)
-        response.forEach((aluno) => {
-          if (!alunosMap[aluno.nome_aluno]) {
-            // Inicializa os dados do aluno se ainda não estiver no mapa
-            alunosMap[aluno.nome_aluno] = {
-              nome_aluno: aluno.nome_aluno,
-              total_faltas: 0,
-              percentual_presenca: aluno.percentual_presenca, // ou o campo correto     // <-- adicione se vier da API
-              meses: {
-                Jan: 0, Fev: 0, Mar: 0, Abr: 0, Mai: 0, Jun: 0,
-                Jul: 0, Ago: 0, Set: 0, Out: 0, Nov: 0, Dez: 0,
-              },
-            };
-          }
-
-          // Atualiza o número de faltas no mês correspondente
-          const mesNome = this.getMesNome(mes); // Obtém o nome do mês (Jan, Fev, etc.)
-          alunosMap[aluno.nome_aluno].meses[mesNome] = aluno.total_faltas;
-
-          // Atualiza o total de faltas
-          alunosMap[aluno.nome_aluno].total_faltas += aluno.total_faltas;
-        });
+    this.turmaExibida = this.turmaSelecionada;
+    this.reportService.getAttendanceReport(this.codigoTurma, this.anoSelecionado)
+      .subscribe({
+        next: (dados) => {
+          this.report = dados;
+          this.isLoading = false;
+        },
+        error: () => {
+          this.report = [];
+          this.isLoading = false;
+        }
       });
-
-      // Calcula o percentual de presença para cada aluno
-      Object.values(alunosMap).forEach((aluno) => {
-        const totalMeses = 12; // Total de meses no ano
-        const totalPresencas = totalMeses - aluno.total_faltas; // Presenças = Total meses - faltas
-        aluno.percentual_presenca = (totalPresencas / totalMeses) * 100; // Percentual de presença
-      });
-
-      // Converte o mapa de alunos para um array para exibição na tabela
-      this.report = Object.values(alunosMap);
-      this.turmaExibida = this.turmaSelecionada; // Atualiza a turma exibida na tabela
-      this.isLoading = false;
-      console.log('Relatório gerado com sucesso:', this.report);
-    }).catch((error) => {
-      this.isLoading = false;
-      console.error('Erro ao gerar relatório:', error);
-    });
   }
 
-  // Método para obter o nome do mês correspondente
-  getMesNome(mes: number): string {
-    const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-    return meses[mes - 1];
+  exportarCSV(): void {
+    if (!this.report.length) return;
+
+    const header = [
+      'Nome do Aluno',
+      'Matrícula',
+      'Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez',
+      'Total de Faltas',
+      'Percentual de Presença'
+    ];
+
+    const rows = this.report.map(aluno => [
+      aluno.nome_aluno,
+      aluno.matricula,
+      aluno.jan, aluno.fev, aluno.mar, aluno.abr, aluno.mai, aluno.jun,
+      aluno.jul, aluno.ago, aluno.set, aluno.out, aluno.nov, aluno.dez,
+      aluno.total_faltas,
+      aluno.percentual_presenca.toFixed(2) + '%'
+    ]);
+
+    const csvContent =
+      [header, ...rows]
+        .map(e => e.map(field => `"${String(field).replace(/"/g, '""')}"`).join(','))
+        .join('\r\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `frequencia_alunos_${this.turmaExibida}_${this.anoSelecionado}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    this.showModal = true;
   }
 }

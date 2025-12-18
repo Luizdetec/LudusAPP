@@ -11,6 +11,8 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1000,
         height: 700,
+        autoHideMenuBar: true,
+        icon: './public/assets/icons/images/ludus-icon.svg',
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -29,7 +31,7 @@ function createWindow() {
 
     // Mantenha o DevTools para o console do Angular/rede
     //win.webContents.openDevTools(); 
-    autohideMenuBar: true;
+    
 }
 
 function startFastAPIServer() {

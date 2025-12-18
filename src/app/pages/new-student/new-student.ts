@@ -114,6 +114,11 @@ export default class NewStudent {
   };
 
   registerStudent() {
+    const errors = this.validateRequiredFields();
+    if (errors.length > 0) {
+      alert('Preencha os campos obrigatórios:\n' + errors.join('\n'));
+      return;
+    }
     this.isLoading = true;
     this.newStudentService.registerStudent(this.studentData).subscribe(
       (response) => {
@@ -190,5 +195,35 @@ export default class NewStudent {
   onVaccineChange(value: string): void {
     this.studentData.saude.vacina = value;
     console.log('Vacina selecionada:', value);
+  }
+
+  validateRequiredFields(): string[] {
+    const errors: string[] = [];
+
+    // Identificação do aluno
+    if (!this.studentData.ident_aluno.nome_aluno) errors.push('Nome do aluno');
+    if (!this.studentData.ident_aluno.nis) errors.push('NIS');
+    if (!this.studentData.ident_aluno.sexo) errors.push('Sexo');
+    if (!this.studentData.ident_aluno.aluno_raca) errors.push('Identidade racial');
+    if (!this.studentData.ident_aluno.uf) errors.push('UF');
+    if (!this.studentData.ident_aluno.data_nascimento) errors.push('Data de Nascimento');
+    if (!this.studentData.ident_aluno.cpf) errors.push('CPF');
+    if (!this.studentData.ident_aluno.cartao_sus) errors.push('Cartão SUS');
+    if (!this.studentData.ident_aluno.identidade_docestrangeiro_passaporte) errors.push('Município de Nascimento');
+
+    // Responsáveis
+    if (!this.studentData.responsaveis.responsavel) errors.push('Nome do Responsável');
+    if (!this.studentData.responsaveis.cpf_responsavel) errors.push('CPF do Responsável');
+    if (!this.studentData.responsaveis.rg_responsavel) errors.push('RG do Responsável');
+
+    // Endereço
+    if (!this.studentData.info_endereco.endereco) errors.push('Endereço');
+    if (!this.studentData.info_endereco.cep) errors.push('CEP');
+    if (!this.studentData.info_endereco.municipio) errors.push('Município');
+
+    // Vacina
+    if (!this.studentData.saude.vacina) errors.push('Vacina');
+
+    return errors;
   }
 }

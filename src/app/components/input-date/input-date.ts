@@ -1,10 +1,12 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-input-date',
   templateUrl: './input-date.html',
   styleUrls: ['./input-date.scss'],
+  imports: [NgIf, CommonModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -15,6 +17,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class InputDate implements ControlValueAccessor {
   @Input() label: string = '';
+  @Input() required: boolean = false;
 
   value: string = ''; // Valor do input
   disabled: boolean = false; // Estado de desabilitado

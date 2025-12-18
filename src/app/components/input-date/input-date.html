@@ -1,5 +1,8 @@
 <div class="input-group">
-  <label for="data">{{ label }}</label>
+  <div class="label-wrapper">
+    <label for="data">{{ label }}</label>
+    <label *ngIf="required" class="mark">*</label>
+  </div>
   <div class="date-wrapper">
     <input
       type="date"

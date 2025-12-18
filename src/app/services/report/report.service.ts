@@ -13,9 +13,9 @@ export class ReportService {
   constructor(private readonly http: HttpClient) {}
 
   // Método para obter o relatório de frequência
-  getAttendanceReport(turma: string, ano: string, mes: number): Observable<IstudentAttendance[]> {
+  getAttendanceReport(turma: string, ano: string): Observable<IstudentAttendance[]> {
     return this.http.get<IstudentAttendance[]>(
-      `${this.apiUrl}/reports?codigo_turma=${turma}&ano=${ano}&mes=${mes}`
+      `${this.apiUrl}/reports?codigo_turma=${turma}&ano=${ano}`
     );
   }
 }

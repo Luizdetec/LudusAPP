@@ -3,12 +3,12 @@
     <div class="report-controls">
       <app-select label="Selecione a Turma" [options]="turmas" [selected]="turmaSelecionada" (selectedChange)="onTurmaChange($event)"></app-select>
       <app-select label="Selecione o ano" [options]="ano" [selected]="anoSelecionado" (selectedChange)="onAnoChange($event)"></app-select>
-      <app-button text="Atualizar" color="#111" textcolor="#FEFBF0" hoverColor="#444" (click)="generateReport()"></app-button>
+      <app-button text="Atualizar" color="#111" textcolor="#FEFBF0" hoverColor="#444" (buttonClick)="buscarRelatorio()"></app-button>
     </div>
 
     <div class="report-actions">
       <app-button text="Cancelar" class="btn-cancel" color="#fff" textcolor="#111" hoverColor="#f1f1f1" (buttonClick)="cancel()"></app-button>
-      <app-button text="Exportar" color="#111" textcolor="#FEFBF0" hoverColor="#444" (click)="exportReport()"></app-button>
+      <app-button text="Exportar" color="#111" textcolor="#FEFBF0" hoverColor="#444" (buttonClick)="exportarCSV()"></app-button>
     </div>
   </header>
 
@@ -21,28 +21,30 @@
           <th class="index-col"></th>
           <th>Nome do Aluno</th>
           <th>Turma</th>
+          <th>Matrícula</th>
           <th>Jan</th><th>Fev</th><th>Mar</th><th>Abr</th><th>Mai</th><th>Jun</th>
           <th>Jul</th><th>Ago</th><th>Set</th><th>Out</th><th>Nov</th><th>Dez</th>
           <th>Porcentagem de presença</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let aluno of report">
-          <td></td>
+        <tr *ngFor="let aluno of report; let i = index">
+          <td>{{ i + 1 }}</td>
           <td>{{ aluno.nome_aluno }}</td>
           <td>{{ turmaExibida }}</td>
-          <td>{{ aluno.meses['Jan'] }}</td>
-          <td>{{ aluno.meses['Fev'] }}</td>
-          <td>{{ aluno.meses['Mar'] }}</td>
-          <td>{{ aluno.meses['Abr'] }}</td>
-          <td>{{ aluno.meses['Mai'] }}</td>
-          <td>{{ aluno.meses['Jun'] }}</td>
-          <td>{{ aluno.meses['Jul'] }}</td>
-          <td>{{ aluno.meses['Ago'] }}</td>
-          <td>{{ aluno.meses['Set'] }}</td>
-          <td>{{ aluno.meses['Out'] }}</td>
-          <td>{{ aluno.meses['Nov'] }}</td>
-          <td>{{ aluno.meses['Dez'] }}</td>
+          <td>{{ aluno.matricula }}</td>
+          <td>{{ aluno.jan }}</td>
+          <td>{{ aluno.fev }}</td>
+          <td>{{ aluno.mar }}</td>
+          <td>{{ aluno.abr }}</td>
+          <td>{{ aluno.mai }}</td>
+          <td>{{ aluno.jun }}</td>
+          <td>{{ aluno.jul }}</td>
+          <td>{{ aluno.ago }}</td>
+          <td>{{ aluno.set }}</td>
+          <td>{{ aluno.out }}</td>
+          <td>{{ aluno.nov }}</td>
+          <td>{{ aluno.dez }}</td>
           <td>{{ aluno.percentual_presenca | number:'1.0-2' }}%</td>
         </tr>
       </tbody>

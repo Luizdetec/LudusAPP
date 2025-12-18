@@ -12,8 +12,8 @@
 
             <div class="student-info">
                 <app-main-input-field label="Nome do aluno" placeholder="Ex: Maria Clara da silva"
-                    [(ngModel)]="studentData.ident_aluno.nome_aluno"></app-main-input-field>
-                <app-main-input-field label="NIS" [(ngModel)]="studentData.ident_aluno.nis"></app-main-input-field>
+                    [(ngModel)]="studentData.ident_aluno.nome_aluno" [required]="true"></app-main-input-field>
+                <app-main-input-field label="NIS" [(ngModel)]="studentData.ident_aluno.nis" [required]="true"></app-main-input-field>
                 <app-main-input-field label="Digite o ID do aluno INEP" [(ngModel)]="studentData.ident_aluno.codigo_inep"></app-main-input-field>
 
                 <div class="input-row">
@@ -22,27 +22,28 @@
                           label="Identidade racial" 
                           [options]="races" 
                           [(selected)]="studentData.ident_aluno.aluno_raca" 
-                          (selectedChange)="onRaceChange($event)">
+                          (selectedChange)="onRaceChange($event)" [required]="true">
                         </app-select>
                     </div>
 
                     <div class="select-wrapper">
                         <app-select 
-                          label="Sexo *" 
+                          label="Sexo" 
                           [options]="sexes" 
                           [(selected)]="studentData.ident_aluno.sexo" 
-                          (selectedChange)="onSexChange($event)">
+                          (selectedChange)="onSexChange($event)"
+                          [required]="true">
                         </app-select>
                     </div>
                 </div>
 
-                <app-main-input-field label="UF *" [(ngModel)]="studentData.ident_aluno.uf"></app-main-input-field>
-                <app-main-input-field label="Município de Nascimento *"
-                    [(ngModel)]="studentData.ident_aluno.identidade_docestrangeiro_passaporte">
+                <app-main-input-field label="UF" [(ngModel)]="studentData.ident_aluno.uf" [required]="true"></app-main-input-field>
+                <app-main-input-field label="Município de Nascimento"
+                    [(ngModel)]="studentData.ident_aluno.identidade_docestrangeiro_passaporte" [required]="true">
                 </app-main-input-field>
                 <app-main-input-field label="Nacionalidade" [(ngModel)]="studentData.ident_aluno.nacionalidade"></app-main-input-field>
                 <app-main-input-field label="Tipo de Nascimento" [(ngModel)]="studentData.ident_aluno.tipo_nascimento"></app-main-input-field>
-                <app-input-date label="Data de Nascimento *" [(ngModel)]="studentData.ident_aluno.data_nascimento"></app-input-date>
+                <app-input-date label="Data de Nascimento" [(ngModel)]="studentData.ident_aluno.data_nascimento" [required]="true"></app-input-date>
                 
                 <app-select 
                   label="Tipo da certidão civil" 
@@ -75,7 +76,7 @@
                     <span>Certidão Modelo Novo</span>
                     <div class="line-divisor"></div>
                     <div class="input-row">
-                        <app-main-input-field label="Número de Matrícula (Registro Civil)" [(ngModel)]="studentData.certidao.num_matricula_registro_civil"></app-main-input-field>
+                        <app-main-input-field label="Número de Matrícula (Registro Civil)" [(ngModel)]="studentData.certidao.num_matricula_registro_civil" [required]="true"></app-main-input-field>
                     </div>
                 </div>
 
@@ -96,8 +97,8 @@
                     </div>
 
                     <div class="input-row">
-                        <app-main-input-field label="Cadastro de Pessoa Física (CPF) *" [(ngModel)]="studentData.ident_aluno.cpf"></app-main-input-field>
-                        <app-main-input-field label="Cartão SUS" [(ngModel)]="studentData.ident_aluno.cartao_sus"></app-main-input-field>
+                        <app-main-input-field label="Cadastro de Pessoa Física (CPF) *" [(ngModel)]="studentData.ident_aluno.cpf" [required]="true"></app-main-input-field>
+                        <app-main-input-field label="Cartão SUS" [(ngModel)]="studentData.ident_aluno.cartao_sus" [required]="true"></app-main-input-field>
                         <app-input-date label="Data de Expedição" [(ngModel)]="studentData.ident_aluno.data_expedicao_identidade" (ngModelChange)="onDateExpeditionChange($event)"></app-input-date>
                     </div>
                 </div>
@@ -161,12 +162,12 @@
                     <div class="input-row">
                         <app-main-input-field label="Nome da Mãe" [(ngModel)]="studentData.responsaveis.nome_mae"></app-main-input-field>
                         <app-main-input-field label="Nome do Pai" [(ngModel)]="studentData.responsaveis.nome_pai"></app-main-input-field>
-                        <app-main-input-field label="Nome do Responsável" [(ngModel)]="studentData.responsaveis.responsavel"></app-main-input-field>
+                        <app-main-input-field label="Nome do Responsável" [(ngModel)]="studentData.responsaveis.responsavel" [required]="true"></app-main-input-field>
                     </div>
 
                     <div class="minor-box">
-                        <app-main-input-field label="CPF do Responsável" type="number" [(ngModel)]="studentData.responsaveis.cpf_responsavel"></app-main-input-field>
-                        <app-main-input-field label="RG do Responsável" type="number" [(ngModel)]="studentData.responsaveis.rg_responsavel"></app-main-input-field>
+                        <app-main-input-field label="CPF do Responsável" type="number" [(ngModel)]="studentData.responsaveis.cpf_responsavel" [required]="true"></app-main-input-field>
+                        <app-main-input-field label="RG do Responsável" type="number" [(ngModel)]="studentData.responsaveis.rg_responsavel" [required]="true"></app-main-input-field>
                     </div>
 
 
@@ -206,20 +207,20 @@
                   label="Vacina" 
                   [options]="vaccine" 
                   [(selected)]="studentData.saude.vacina" 
-                  (selectedChange)="onVaccineChange($event)">
+                  (selectedChange)="onVaccineChange($event)" [required]="true">
                 </app-select>
 
                 <div class="inner-box">
                     <span>Endereço</span>
                     <div class="line-divisor"></div>
-                    <app-main-input-field label="Endereço" [(ngModel)]="studentData.info_endereco.endereco"></app-main-input-field>
+                    <app-main-input-field label="Endereço" [(ngModel)]="studentData.info_endereco.endereco" [required]="true"></app-main-input-field>
                     <div class="input-row">
                         <app-main-input-field label="Número" [(ngModel)]="studentData.info_endereco.numero_endereco"></app-main-input-field>
                         <app-main-input-field label="Complemento" [(ngModel)]="studentData.info_endereco.complemento"></app-main-input-field>
-                        <app-main-input-field label="CEP" [(ngModel)]="studentData.info_endereco.cep"></app-main-input-field>
+                        <app-main-input-field label="CEP" [(ngModel)]="studentData.info_endereco.cep" [required]="true"></app-main-input-field>
                     </div>
                     <div class="input-row">
-                        <app-main-input-field label="Município" [(ngModel)]="studentData.info_endereco.municipio"></app-main-input-field>
+                        <app-main-input-field label="Município" [(ngModel)]="studentData.info_endereco.municipio" [required]="true"></app-main-input-field>
                         <app-main-input-field label="Bairro" [(ngModel)]="studentData.info_endereco.bairro"></app-main-input-field>
                         <app-main-input-field label="UF" [(ngModel)]="studentData.info_endereco.uf"></app-main-input-field>
                     </div>

@@ -3,7 +3,7 @@
     <label [class.disabled-label]="disabled">{{ label }}</label>
     <label class="mark" *ngIf="required && !disabled">*</label>
   </div>
-
+  <span *ngIf="error" class="error-message">{{ error }}</span>
   <input
     [type]="type"
     class="input-box"

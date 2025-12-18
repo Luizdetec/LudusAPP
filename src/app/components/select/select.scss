@@ -15,6 +15,16 @@ label{
   font-weight: 500;
 }
 
+.label-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.mark {
+  color: $brand-palette-red-mn;
+}
+
 select {
   width: 100%; // Ocupa toda a largura disponível
   padding: 15px 20px;
